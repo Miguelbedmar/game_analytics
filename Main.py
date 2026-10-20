@@ -1,22 +1,33 @@
-class Main:
-    def main():
-        print("hellol")
-
-
-if __name__=='__main__':
-        Main()        
-
-
-
 
 def menuGameAnalystic():
-    
-    while(True):
-        print(f"<====")
+
+    while True:
+        print(f"<====GAME ANALYSTICS===========>")
+        print(f"<=====1. CARGAR FICHERO=========>")
+        print(f"<=====2. MOSTRAR ESTADÍSTICAS===>")
+        print(f"<====3.EXPORTAR CV TANRFORMADO=>")
+        print(f"<====4.SALIR===================>")
         try:
-            opcionMenu=int(input("Seleccione una opción"))  
+            opcionMenu = int(input(f"Seleccione una opción"))
 
-        except ValueError:    
-            print("Valor inválido")
+            match opcionMenu:
+                case 1: print("")
 
-            
+                case 2:print("")
+
+                case 3: print("")
+
+                case 4: break 
+
+                case _: print(f"Opción en desarrollo")  
+
+        except ValueError:
+            print(f"Valor inválido")
+
+
+
+def main():
+        menuGameAnalystic()
+
+if __name__ == "__main__":
+    main()
