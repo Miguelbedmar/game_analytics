@@ -1,4 +1,4 @@
-
+import sys
 def menuGameAnalystic():
 
     while True:
@@ -17,7 +17,7 @@ def menuGameAnalystic():
 
                 case 3: print("")
 
-                case 4: break 
+                case 4: sys.exit(0) 
 
                 case _: print(f"Opción en desarrollo")  
 
