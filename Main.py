@@ -19,9 +19,15 @@ def menuGameAnalystic():
             match opcionMenu:
                 case 1:
                     try:
-                        ruta=input("Ingrese la ruta del archivo CSV")
-                    except (OSError ,FileNotFoundError)as f :
-                        print("ERROR! valor no válido",f)
+                        ruta = input("Ingrese la ruta del archivo CSV")
+                        cargarArchivoCsv(ruta)
+
+                    except (
+                        OSError,
+                        FileNotFoundError,
+                    ) as f:  # Capturamos todo caracter no válido o rutas mal formadas del sistema Operativo
+                        # Con FileNotFound nos aseguramos de que el usuario ingrese un archivo por lo menos.
+                        print("ERROR! valor no válido", f)
 
                 case 2:
                     print("Opcion 2")
@@ -37,14 +43,19 @@ def menuGameAnalystic():
                     print("Opción no válida ")
 
         except ValueError as e:
-            print("Valor inválido" ,e)
+            print("Valor inválido", e)
 
-#Función que  pedira y comproborara la ruta.
-def cargarArchivoCsv(ruta:str):
+
+# Función que  pedira y comproborara la ruta.
+def cargarArchivoCsv(ruta: str) -> Videojuego:
     while True:
-
+        archivoCsv = Path(ruta.strip())
         try:
-
+            if not archivoCsv.is_file():  # Raise es equivalente a throws en java por lo tanto podemos personalizar excepciones
+                raise FileNotFoundError(f"ERROR! El archivo no existe{archivoCsv}")
+                # Con un mensaje para cada uno 
+            if archivoCsv.suffix.lower() !=".csv": # Comprobamos la extensión del fichero
+                pass
             break
         except PermissionError as p:
             print("!ERROR:", p)
