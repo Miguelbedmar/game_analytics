@@ -6,7 +6,7 @@ class Videojuego:
         self.__titulo = titulo
         self.__genero = genero
         self.__precio = precio
-        self.horas_jugadas = horas_jugadas
+        self.__horas_jugadas = horas_jugadas
         self.__valoracion = valoracion
 
     # GETTERS Y SETTERS
@@ -52,3 +52,8 @@ class Videojuego:
     def set_valoracion(self, valoracion):
         if isinstance(valoracion, float):
             self.__valoracion = valoracion
+
+    def __str__(
+        self,
+    ):  # Con este metodo imprimiremos la información del objeto videojuego sin necesitar de otro metodo
+        return f"Videojuegos:ID{self.__id}|Nombre:({self.__titulo})|Genero:({self.__genero})|Precio({self.__precio})|Horas Jugadas({self.__horas_jugadas})|Valoracion({self.__valoracion})"

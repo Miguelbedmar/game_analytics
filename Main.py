@@ -81,8 +81,6 @@ def cargarArchivoCsv(ruta: str) -> list[Videojuego]:
                 )
             videojuegoLista.append(juego)
 
-            
-
     except PermissionError as p:
         print(mensajeErrorPermisosFichero, p)
     except ValueError as v:
