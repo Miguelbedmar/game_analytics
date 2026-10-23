@@ -25,10 +25,7 @@ def menuGameAnalystic():
                     print("")
 
                 case 4:
-                    logger = logging.basicConfig(
-                        nivel =logging.DEBUG,
-                        format=''
-                    )
+
                     sys.exit(0)
                 case _:
                     print(f"Opción en desarrollo")
