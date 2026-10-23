@@ -10,7 +10,7 @@ def menuGameAnalystic():
         print(f"<=====1. CARGAR FICHERO=========>")
         print(f"<=====2. MOSTRAR ESTADÍSTICAS===>")
         print(f"<====3.EXPORTAR CV TANRFORMADO=>")
-        print(f"<====4.SALIR===================>")
+        print(f"<====4.SALIR===================> ")
         try:
             opcionMenu = int(input(f"Seleccione una opción"))
 
@@ -25,7 +25,10 @@ def menuGameAnalystic():
                     print("")
 
                 case 4:
-                    logging.info('HAS SALIDO DEL PROGRAMA')
+                    logger = logging.basicConfig(
+                        nivel =logging.DEBUG,
+                        format=''
+                    )
                     sys.exit(0)
                 case _:
                     print(f"Opción en desarrollo")
