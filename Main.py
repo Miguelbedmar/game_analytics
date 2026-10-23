@@ -27,7 +27,7 @@ def menuGameAnalystic():
                     try:
                         ruta = input("Ingrese la ruta del archivo CSV")
                         listaCsv = cargarArchivoCsv(ruta)
-                        
+                        print(listaCsv)
                     except (
                         EOFError
                     ) as i:  # utiliando as  podemos colocarle un alias a cualquier excepcion
@@ -71,7 +71,7 @@ def cargarArchivoCsv(ruta: str) -> list[Videojuego]:
         with archivoCsv.open("r", newline="", encoding="utf-8") as fichero:
             dato = csv.DictReader(fichero)
             for f in dato:
-                juego = Videojuego(
+                juegoActual = Videojuego(
                     id=int(f["id"]),
                     titulo=str(f["titulo"]),
                     genero=str(f["genero"]),
@@ -79,8 +79,9 @@ def cargarArchivoCsv(ruta: str) -> list[Videojuego]:
                     horas_jugadas=int(f["horas_jugadas"]),
                     valoracion=float(f["valoracion"]),
                 )
-            videojuegoLista.append(juego)
-            print(videojuegoLista.__str__)
+                videojuegoLista.append(juegoActual)
+
+        
     except PermissionError as p:
         print(mensajeErrorPermisosFichero, p)
     except ValueError as v:
@@ -89,12 +90,10 @@ def cargarArchivoCsv(ruta: str) -> list[Videojuego]:
 
 
 def mostrarEstadisticas():
-    
+
     try:
         print()
 
-
-        
     except FileNotFoundError as e:
         print(e)
 
