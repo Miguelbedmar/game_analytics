@@ -22,10 +22,11 @@ def menuGameAnalystic():
                         ruta = input("Ingrese la ruta del archivo CSV")
                         cargarArchivoCsv(ruta)
 
-                    except OSError as f:
-                        # Capturamos todo caracter no válido o rutas mal formadas del sistema Operativo
-                        # Con FileNotFound nos aseguramos de que el usuario ingrese un archivo por lo menos.
-                        print("ERROR! valor no válido", f)
+                    except (
+                        EOFError
+                    ) as i:  # utiliando as  podemos colocarle un alias a cualquier excepcion
+
+                        print("ERROR! Has accedido al final del archivo", i)
 
                 case 2:
                     print("Opcion 2")
@@ -40,32 +41,33 @@ def menuGameAnalystic():
                 case _:
                     print("Opción no válida ")
 
-        except ValueError as e:
+        except (ValueError, EOFError) as e:
             print("Valor inválido", e)
 
 
 # Función que  pedira y comproborara la ruta.
-def cargarArchivoCsv(ruta: str) -> Videojuego:
-    while True:
-        archivoCsv = Path(ruta.strip())
-        try:
-            if (
-                not archivoCsv.is_file()
-            ):  # Raise es equivalente a throws en java por lo tanto podemos personalizar excepciones
-                raise FileNotFoundError(f"ERROR! El archivo no existe{archivoCsv}")
-                # Con un mensaje para cada uno
-            if (
-                archivoCsv.suffix.lower() != ".csv"
-            ):  # Comprobamos si la extensión del archivo es csv
-                raise ValueError("ERROR! El fichero debe tener extensión .csv")
-            with open("r","Videojuegos.csv",newline="", encoding="utf-8") as fichero:
-                dato = csv.reader(fichero)
-                for fila in dato:
-                    print(fila)
+def cargarArchivoCsv(ruta: str) -> list[Videojuego]:
 
-            break
-        except PermissionError as p:
-            print("!ERROR:", p)
+    archivoCsv = Path(ruta.strip())
+    try:
+        if (
+            not archivoCsv.is_file()
+        ):  # Raise es equivalente a throws en java por lo tanto podemos personalizar excepciones
+            raise FileNotFoundError(f"ERROR! El archivo no existe{archivoCsv}")
+            # Con un mensaje para cada uno
+        if (
+            archivoCsv.suffix.lower() != ".csv"
+        ):  # Comprobamos si la extensión del archivo es csv
+            raise ValueError("ERROR! El fichero debe tener extensión .csv")
+        with archivoCsv.open(
+            "r", "videojuegos.csv", newline="", encoding="utf-8"
+        ) as fichero:
+            dato = csv.Reader(fichero)
+            for f in dato :
+                print(f)
+
+    except PermissionError as p:
+        print("!ERROR: falta de permisos en el ficero", p)
 
 
 def mostrarEstadisticas():
