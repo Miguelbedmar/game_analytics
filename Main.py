@@ -91,6 +91,8 @@ def cargarArchivoCsv(ruta: str) -> list[Videojuego]:
 
 def mostrarEstadisticas():
 
+    
+
     try:
         print()
 
