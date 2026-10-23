@@ -45,9 +45,10 @@ class Videojuego:
     def set_horasJugadas(self, horasJugadas):
         if isinstance(horasJugadas, int or float):
             self.__horasJugadas = horasJugadas
+
     def get_valoracion(self):
         return self.__valoracion
 
-    def set_valoracion(self,valoracion):
-        if isinstance(valoracion,int or float):
-            self.__valoracion=valoracion
+    def set_valoracion(self, valoracion):
+        if isinstance(valoracion, int or float):
+            self.__valoracion = valoracion

@@ -1,7 +1,8 @@
-import sys # Libreria sys importada p
+import sys  # Libreria sys importada p
 import csv
+import libreria.videojuego # importamos la clase videojuego
 
-#Función principal para gestionar fichero .csv
+# Función principal para gestionar fichero .csv
 def menuGameAnalystic():
 
     while True:
@@ -25,7 +26,7 @@ def menuGameAnalystic():
 
                 case 4:
 
-                    sys.exit(0) 
+                    sys.exit(0)
 
                 case _:
                     print(f"Opción en desarrollo")
