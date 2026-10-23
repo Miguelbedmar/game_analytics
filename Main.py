@@ -1,38 +1,54 @@
 import sys  # Libreria sys importada p
 import csv
-import libreria.videojuego # importamos la clase videojuego
+from libreria.videojuego import Videojuego # importamos la clase videojuego
+
+
+
 
 # Función principal para gestionar fichero .csv
 def menuGameAnalystic():
-
+    videojuego=[]
     while True:
-        print(f"<====GAME ANALYSTICS===========>")
-        print(f"<=====1. CARGAR FICHERO=========>")
-        print(f"<=====2. MOSTRAR ESTADÍSTICAS===>")
-        print(f"<====3.EXPORTAR CV TANRFORMADO=>")
-        print(f"<====4.SALIR===================> ")
+        print("<====GAME ANALYTICS===========>")
+        print("<=====1. CARGAR FICHERO=========>")
+        print("<=====2. MOSTRAR ESTADÍSTICAS===>")
+        print("<====3.EXPORTAR CSV TRANSFORMADO=>")
+        print("<====4.SALIR===================> ")
         try:
-            opcionMenu = int(input(f"Seleccione una opción"))
+            opcionMenu = int(input("Seleccione una opción : "))
 
             match opcionMenu:
                 case 1:
-                    print("")
+                    print(" Opcion 1")
 
                 case 2:
-                    print("")
+                    print("Opcion 2")
 
                 case 3:
-                    print("")
+                    print("Opcion 3")
 
                 case 4:
 
                     sys.exit(0)
 
                 case _:
-                    print(f"Opción en desarrollo")
+                    print("Opción en desarrollo ")
 
         except ValueError:
-            print(f"Valor inválido")
+            print("Valor inválido")
+
+
+def cargarArchivoCsv():
+
+    pass
+
+
+def mostrarEstadisticas():
+    pass
+
+
+def transformarArchivo():
+    pass
 
 
 def main():
