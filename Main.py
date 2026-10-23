@@ -23,7 +23,7 @@ def menuGameAnalystic():
                         cargarArchivoCsv(ruta)
 
                     except (
-                        EOFError
+                        EOFError,ValueError,FileNotFoundError,
                     ) as i:  # utiliando as  podemos colocarle un alias a cualquier excepcion
 
                         print("ERROR! Has accedido al final del archivo", i)
@@ -41,7 +41,7 @@ def menuGameAnalystic():
                 case _:
                     print("Opción no válida ")
 
-        except (ValueError, EOFError) as e:
+        except (ValueError, EOFError,TypeError) as e:
             print("Valor inválido", e)
 
 
@@ -60,13 +60,14 @@ def cargarArchivoCsv(ruta: str) -> list[Videojuego]:
         ):  # Comprobamos si la extensión del archivo es csv
             raise ValueError("ERROR! El fichero debe tener extensión .csv")
         with archivoCsv.open(
-            "r", "videojuegos.csv", newline="", encoding="utf-8"
+            "r", newline="", encoding="utf-8"
         ) as fichero:
-            dato = csv.Reader(fichero)
-            for f in dato :
+            dato = csv.DictReader(fichero)
+            for f in dato:
+                
                 print(f)
 
-    except PermissionError as p:
+    except (PermissionError,EOFError,TypeError) as p:
         print("!ERROR: falta de permisos en el ficero", p)
 
 
