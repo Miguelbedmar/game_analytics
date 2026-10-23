@@ -27,6 +27,7 @@ def menuGameAnalystic():
                 case 4:
 
                     sys.exit(0)
+
                 case _:
                     print(f"Opción en desarrollo")
 
