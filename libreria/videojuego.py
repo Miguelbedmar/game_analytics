@@ -56,4 +56,4 @@ class Videojuego:
     def __str__(
         self,
     ):  # Con este metodo imprimiremos la información del objeto videojuego sin necesitar de otro metodo
-        return f"Videojuegos:ID{self.__id}|Nombre:({self.__titulo})|Genero:({self.__genero})|Precio({self.__precio})|Horas Jugadas({self.__horas_jugadas})|Valoracion({self.__valoracion})"
+        return f"Videojuegos:ID{self.__id}|Nombre:{self.__titulo}|Genero:{self.__genero}|Precio{self.__precio}|Horas Jugadas{self.__horas_jugadas}|Valoracion{self.__valoracion}"
