@@ -1,12 +1,12 @@
 class Videojuego:
 
     # Constructor de la c
-    def __init__(self, id, titulo, genero, precio, horasJugadas, valoracion):
+    def __init__(self, id, titulo, genero, precio, horas_jugadas, valoracion):
         self.__id = id
         self.__titulo = titulo
         self.__genero = genero
         self.__precio = precio
-        self.__horasJugadas = horasJugadas
+        self.horas_jugadas = horas_jugadas
         self.__valoracion = valoracion
 
     # GETTERS Y SETTERS
@@ -36,19 +36,19 @@ class Videojuego:
         return self.__precio
 
     def set_precio(self, precio):
-        if isinstance(precio, int or float):
+        if isinstance(precio, float):
             self.__precio = precio
 
     def get_horasJugadas(self):
-        return self.__horasJugadas
+        return self.__horas_jugadas
 
-    def set_horasJugadas(self, horasJugadas):
-        if isinstance(horasJugadas, int or float):
-            self.__horasJugadas = horasJugadas
+    def set_horasJugadas(self, horas_jugadas):
+        if isinstance(horas_jugadas, int):
+            self.__horas_jugadas = horas_jugadas
 
     def get_valoracion(self):
         return self.__valoracion
 
     def set_valoracion(self, valoracion):
-        if isinstance(valoracion, int or float):
+        if isinstance(valoracion, float):
             self.__valoracion = valoracion

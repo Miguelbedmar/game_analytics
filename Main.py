@@ -6,7 +6,6 @@ from pathlib import Path  # Importamos de la librerias pathlib el objeto Path
 
 # Función principal para gestionar fichero .csv
 def menuGameAnalystic():
-    videojuego = []
     while True:
         print("<====GAME ANALYTICS===========>")
         print("<=====1. CARGAR FICHERO=========>")
@@ -23,7 +22,9 @@ def menuGameAnalystic():
                         cargarArchivoCsv(ruta)
 
                     except (
-                        EOFError,ValueError,FileNotFoundError,
+                        EOFError,
+                        ValueError,
+                        FileNotFoundError,
                     ) as i:  # utiliando as  podemos colocarle un alias a cualquier excepcion
 
                         print("ERROR! Has accedido al final del archivo", i)
@@ -41,7 +42,7 @@ def menuGameAnalystic():
                 case _:
                     print("Opción no válida ")
 
-        except (ValueError, EOFError,TypeError) as e:
+        except (ValueError, EOFError, TypeError) as e:
             print("Valor inválido", e)
 
 
@@ -59,15 +60,19 @@ def cargarArchivoCsv(ruta: str) -> list[Videojuego]:
             archivoCsv.suffix.lower() != ".csv"
         ):  # Comprobamos si la extensión del archivo es csv
             raise ValueError("ERROR! El fichero debe tener extensión .csv")
-        with archivoCsv.open(
-            "r", newline="", encoding="utf-8"
-        ) as fichero:
+        with archivoCsv.open("r", newline="", encoding="utf-8") as fichero:
             dato = csv.DictReader(fichero)
             for f in dato:
-                
-                print(f)
+                videojuego = videojuego(
+                    id=int(f["id"]),
+                    titulo=(f["titulo"]),
+                    genero=(f["genero"]),
+                    precio=float(f["precio"]),
+                    horasJugadas=int(f["horas_jugadas"]),
+                    valoracion=float(f["valoracion"])
+                )
 
-    except (PermissionError,EOFError,TypeError) as p:
+    except (PermissionError, EOFError, TypeError) as p:
         print("!ERROR: falta de permisos en el ficero", p)
 
 
