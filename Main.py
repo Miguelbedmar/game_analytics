@@ -1,4 +1,8 @@
 import sys
+import logging
+import csv
+
+
 def menuGameAnalystic():
 
     while True:
@@ -11,23 +15,28 @@ def menuGameAnalystic():
             opcionMenu = int(input(f"Seleccione una opción"))
 
             match opcionMenu:
-                case 1: print("")
+                case 1:
+                    print("")
 
-                case 2:print("")
+                case 2:
+                    print("")
 
-                case 3: print("")
+                case 3:
+                    print("")
 
-                case 4: sys.exit(0) 
-
-                case _: print(f"Opción en desarrollo")  
+                case 4:
+                    logging.info('HAS SALIDO DEL PROGRAMA')
+                    sys.exit(0)
+                case _:
+                    print(f"Opción en desarrollo")
 
         except ValueError:
             print(f"Valor inválido")
 
 
-
 def main():
-        menuGameAnalystic()
+    menuGameAnalystic()
+
 
 if __name__ == "__main__":
     main()
