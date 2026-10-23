@@ -22,8 +22,8 @@ def menuGameAnalystic():
                         ruta = input("Ingrese la ruta del archivo CSV")
                         cargarArchivoCsv(ruta)
 
-                    except OSError as f : 
-                         # Capturamos todo caracter no válido o rutas mal formadas del sistema Operativo
+                    except OSError as f:
+                        # Capturamos todo caracter no válido o rutas mal formadas del sistema Operativo
                         # Con FileNotFound nos aseguramos de que el usuario ingrese un archivo por lo menos.
                         print("ERROR! valor no válido", f)
 
@@ -58,8 +58,11 @@ def cargarArchivoCsv(ruta: str) -> Videojuego:
                 archivoCsv.suffix.lower() != ".csv"
             ):  # Comprobamos si la extensión del archivo es csv
                 raise ValueError("ERROR! El fichero debe tener extensión .csv")
-            
-            
+            with open("r","Videojuegos.csv",newline="", encoding="utf-8") as fichero:
+                dato = csv.reader(fichero)
+                for fila in dato:
+                    print(fila)
+
             break
         except PermissionError as p:
             print("!ERROR:", p)
