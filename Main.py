@@ -3,6 +3,13 @@ import csv
 from libreria.videojuego import Videojuego  # importamos la clase videojuego
 from pathlib import Path  # Importamos de la librerias pathlib el objeto Path
 
+# MENSAJES DE ERROR
+mensajeErrorValor = "ERROR! Valor introducido no válido"
+mensajeErroFichero = "ERROR! El fichero no existe"
+mensajeErrorPermisosFichero = "ERROR! Falta de permisos"
+mensajeErrorTypo = "ERROR! tipo inválido"
+mensajeErrorFueraFichero = "ERROR! Has accedido al final del archivo"
+
 
 # Función principal para gestionar fichero .csv
 def menuGameAnalystic():
@@ -19,16 +26,17 @@ def menuGameAnalystic():
                 case 1:
                     try:
                         ruta = input("Ingrese la ruta del archivo CSV")
-                        cargarArchivoCsv(ruta)
+                        listaCsv = cargarArchivoCsv(ruta)
 
                     except (
-                        EOFError,
-                        ValueError,
-                        FileNotFoundError,
+                        EOFError
                     ) as i:  # utiliando as  podemos colocarle un alias a cualquier excepcion
 
-                        print("ERROR! Has accedido al final del archivo", i)
-
+                        print(mensajeErrorFueraFichero, i)
+                    except PermissionError as p:
+                        print(mensajeErrorPermisosFichero, p)
+                    except TypeError as tpE:
+                        print(mensajeErrorTypo, tpE)
                 case 2:
                     print("Opcion 2")
 
@@ -42,13 +50,13 @@ def menuGameAnalystic():
                 case _:
                     print("Opción no válida ")
 
-        except (ValueError, EOFError, TypeError) as e:
-            print("Valor inválido", e)
+        except (ValueError, EOFError) as e:
+            print(mensajeErrorValor, e)
 
 
 # Función que  pedira y comproborara la ruta.
 def cargarArchivoCsv(ruta: str) -> list[Videojuego]:
-
+    videojuegoLista = []
     archivoCsv = Path(ruta.strip())
     try:
         if (
@@ -63,17 +71,23 @@ def cargarArchivoCsv(ruta: str) -> list[Videojuego]:
         with archivoCsv.open("r", newline="", encoding="utf-8") as fichero:
             dato = csv.DictReader(fichero)
             for f in dato:
-                videojuego = videojuego(
+                juego = Videojuego(
                     id=int(f["id"]),
-                    titulo=(f["titulo"]),
-                    genero=(f["genero"]),
+                    titulo=str(f["titulo"]),
+                    genero=str(f["genero"]),
                     precio=float(f["precio"]),
-                    horasJugadas=int(f["horas_jugadas"]),
-                    valoracion=float(f["valoracion"])
+                    horas_jugadas=int(f["horas_jugadas"]),
+                    valoracion=float(f["valoracion"]),
                 )
+            videojuegoLista.append(juego)
 
-    except (PermissionError, EOFError, TypeError) as p:
-        print("!ERROR: falta de permisos en el ficero", p)
+            
+
+    except PermissionError as p:
+        print(mensajeErrorPermisosFichero, p)
+    except ValueError as v:
+        print("", v)
+    return videojuegoLista
 
 
 def mostrarEstadisticas():
