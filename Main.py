@@ -3,9 +3,14 @@ import csv
 from libreria.videojuego import Videojuego  # importamos la clase videojuego
 from pathlib import Path  # Importamos de la librerias pathlib el objeto Path
 
+
 # ====================================##
 # OTRAS FUNCIONES
 # ================================= #
+def avg(valor: list[float]) -> float:
+    if not valor:
+        return 0
+    return sum(valor) / len(valor)
 
 
 # Función principal para gestionar fichero .csv
@@ -101,12 +106,17 @@ def cargarArchivoCsv(ruta: str) -> list[Videojuego]:
 
 
 def mostrarEstadisticas(juegos: list[Videojuego]) -> None:
-    if  not juegos:
+    if not juegos:
         print("ERROR! Debes cargar un archivo!")
         return
 
-    precios=[ j.get_precio for j in juegos]
-    
+    precios = [p.get_precio() for p in juegos]
+    Horas = [h.get_horasJugadas() for h in juegos]
+    print("<========Estadísticas==============>")
+    print(f"Total Videojuegos: {len(juegos)}")
+    print(f"precio medio ": {avg(juegos)} )
+
+
 def transformarArchivo():
     while True:
         try:
