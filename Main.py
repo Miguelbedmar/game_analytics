@@ -1,14 +1,15 @@
 import sys  # Libreria sys importada p
 import csv
 from libreria.videojuego import Videojuego  # importamos la clase videojuego
-from pathlib import Path  # Importamos de la librerias pathlib el objeto Path
+import logging
 
 # MENSAJES DE ERROR
-mensajeErrorValor = "ERROR! Valor introducido no válido"
-mensajeErroFichero = "ERROR! El fichero no existe"
+mensajeErrorValor = "ERROR: El precio contiene valores no válidos."
+mensajeErroFichero = "ERROR: No existe el fichero indicado"
 mensajeErrorPermisosFichero = "ERROR! Falta de permisos"
 mensajeErrorTypo = "ERROR! tipo inválido"
 mensajeErrorFueraFichero = "ERROR! Has accedido al final del archivo"
+
 
 
 # Función principal para gestionar fichero .csv
@@ -26,8 +27,8 @@ def menuGameAnalystic():
                 case 1:
                     try:
                         ruta = input("Ingrese la ruta del archivo CSV")
-                        listaCsv = cargarArchivoCsv(ruta)
-                        print(listaCsv)
+                        cargarArchivoCsv(ruta)
+
                     except (
                         EOFError
                     ) as i:  # utiliando as  podemos colocarle un alias a cualquier excepcion
@@ -44,13 +45,13 @@ def menuGameAnalystic():
                     print("Opcion 3")
 
                 case 4:
-
+                    logging.info('Saliendo de programa...')
                     sys.exit(0)
 
                 case _:
                     print("Opción no válida ")
 
-        except (ValueError, EOFError) as e:
+        except ValueError as e:
             print(mensajeErrorValor, e)
 
 
@@ -81,19 +82,17 @@ def cargarArchivoCsv(ruta: str) -> list[Videojuego]:
                 )
                 videojuegoLista.append(juegoActual)
 
-        
     except PermissionError as p:
         print(mensajeErrorPermisosFichero, p)
     except ValueError as v:
-        print("", v)
+        print(v)
     return videojuegoLista
 
 
 def mostrarEstadisticas():
 
-    
-
     try:
+
         print()
 
     except FileNotFoundError as e:
