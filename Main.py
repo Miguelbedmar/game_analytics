@@ -7,7 +7,7 @@ from pathlib import Path  # Importamos de la librerias pathlib el objeto Path
 # ====================================##
 # OTRAS FUNCIONES
 # ================================= #
-def avg(valor: list[float]) -> float:
+def avg(valor: list[float]) -> float: # Definicion de la funcion avg  ya que python no tiene integrada avg() nativamente aunque podriamos utilizar otras librerias como estadictis
     if not valor:
         return 0
     return sum(valor) / len(valor)
@@ -110,13 +110,13 @@ def mostrarEstadisticas(juegos: list[Videojuego]) -> None:
         print("ERROR! Debes cargar un archivo!")
         return
 
-    precios = [p.get_precio() for p in juegos]
+    precios = [p.get_precio() for p in juegos] # Extraemos el precio de cada juego 
     Horas = [h.get_horasJugadas() for h in juegos]
     print("<========Estadísticas==============>")
     print(f"Total Videojuegos: {len(juegos)}")
-    print(f"precio medio ": {avg(juegos)} )
-
-
+    print(f"precio medio : {avg(precios):.2f} €")
+    print(f"Media de horas de juego : {avg(Horas):.2f} h")
+    
 def transformarArchivo():
     while True:
         try:

@@ -36,14 +36,14 @@ class Videojuego:
         return self.__precio
 
     def set_precio(self, precio):
-        if isinstance(precio, float):
+        if isinstance(precio, float,int):
             self.__precio = precio
 
     def get_horasJugadas(self):
         return self.__horas_jugadas
 
     def set_horasJugadas(self, horas_jugadas):
-        if isinstance(horas_jugadas, int):
+        if isinstance(horas_jugadas, int,float):
             self.__horas_jugadas = horas_jugadas
 
     def get_valoracion(self):
@@ -59,7 +59,7 @@ class Videojuego:
         elif self.__precio <= 40:
             return "Medio"
         return "Caro"
-
+        # METODOS
     def nivel_dedicacion(self):
         if self.__horas_jugadas <= 50:
             return "Casual"
