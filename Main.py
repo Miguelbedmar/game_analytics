@@ -4,8 +4,8 @@ from libreria.videojuego import Videojuego  # importamos la clase videojuego
 from pathlib import Path  # Importamos de la librerias pathlib el objeto Path
 
 # Variables de ruta
-directorioDatos = Path(__file__).parent / "datos"
-ficheroSalida = "videojuegos_transformado.csv"
+directorio_Datos = Path(__file__).parent / "datos"
+fichero_Salida = "videojuegos_transformado.csv"
 
 
 # ====================================##
@@ -33,11 +33,11 @@ def menuGameAnalystic():
         print("<====seleccione una opcion======>")
         try:
             try:
-                opcionMenu = int(input("Seleccione una opción : "))
+                opcion_Menu = int(input("Seleccione una opción : "))
             except ValueError:
                 print("Debes de ingresar un numero")
                 continue
-            match opcionMenu:
+            match opcion_Menu:
                 case 1:
                     try:
                         ruta = input("Ingrese la ruta del archivo CSV")
@@ -90,7 +90,7 @@ def cargarArchivoCsv(ruta: str) -> list[Videojuego]:
 
             for f in dato:
                 try:
-                    precioValido = float(f["precio"])
+                    precio_Valido = float(f["precio"])
                 except ValueError:
                     raise ValueError("ERROR: El precio contiene valores no válidos.")
                 try:
@@ -98,7 +98,7 @@ def cargarArchivoCsv(ruta: str) -> list[Videojuego]:
                         id=int(f["id"]),
                         titulo=str(f["titulo"]),
                         genero=str(f["genero"]),
-                        precio=precioValido,
+                        precio=precio_Valido,
                         horas_jugadas=int(f["horas_jugadas"]),
                         valoracion=float(f["valoracion"]),
                     )
@@ -131,13 +131,13 @@ def transformarArchivo(juegos: list[Videojuego]) -> None:
         print("ERROR! Debes cargar un archivo!")
         return
     ruta = input("Ingrese la ruta de exportación del nuevo fichero")
-    directori = Path(ruta) if ruta else directorioDatos
+    directori = Path(ruta) if ruta else directorio_Datos
 
     if not directori.is_dir():
         print("El directorio no existe")
         return
-    destinoFichero = directori / ficheroSalida
-    with destinoFichero.open("w", newline="", encoding="utf-8") as f:
+    destino_Fichero = directori / fichero_Salida
+    with destino_Fichero.open("w", newline="", encoding="utf-8") as f:
         escrito = csv.writer(f)
         escrito.writerow(
             [
@@ -164,7 +164,7 @@ def transformarArchivo(juegos: list[Videojuego]) -> None:
                     j.get_nivel_dedicacion(),
                 ]
             )
-        print(f"Fichero exportado en : {destinoFichero} correctamente")
+        print(f"Fichero exportado en : {destino_Fichero} correctamente")
 
 
 def main():
