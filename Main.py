@@ -3,7 +3,6 @@ import csv
 from libreria.videojuego import Videojuego  # importamos la clase videojuego
 from pathlib import Path  # Importamos de la librerias pathlib el objeto Path
 
-
 # ====================================##
 # OTRAS FUNCIONES
 # ================================= #
@@ -36,6 +35,8 @@ def menuGameAnalystic():
 
                     except ValueError:
                         raise ValueError("Error! Has ingresado  un valor inválido")
+                    except FileNotFoundError:
+                        raise FileNotFoundError("ERROR: No existe el fichero indicado ")
                 case 2:
                     print("Opcion 2")
 
@@ -61,7 +62,7 @@ def cargarArchivoCsv(ruta: str) -> list[Videojuego]:
         if (
             not archivoCsv.is_file()
         ):  # Raise es equivalente a throws en java por lo tanto podemos personalizar excepciones
-            raise FileNotFoundError(f"ERROR! El archivo no existe en {archivoCsv} ")
+            raise FileNotFoundError("ERROR: No existe el fichero indicado")
             # Con un mensaje para cada uno
         if (
             archivoCsv.suffix.lower() != ".csv"
@@ -86,7 +87,7 @@ def cargarArchivoCsv(ruta: str) -> list[Videojuego]:
                     )
                 except ValueError:
                     print("Error! Valores numericos no válidos en el fichero.")
-            videojuegoLista.append(juegoActual)
+                    videojuegoLista.append(juegoActual)
 
     except PermissionError:
         raise PermissionError("ERROR! No hay suficientes permisos en el fichero.")
