@@ -1,51 +1,51 @@
 id,titulo,genero,precio,horas_jugadas,valoracion,categoria_precio,nivel_dedicacion
-1,The Witcher 3: Wild Hunt,RPG,29.99,120,9.7,Medio,Habitural
-2,Elden Ring,RPG,59.99,95,9.5,Caro,Habitural
-3,Baldur's Gate 3,RPG,59.99,110,9.8,Caro,Habitural
-4,Cyberpunk 2077,RPG,59.99,65,8.6,Caro,Habitural
-5,Skyrim,RPG,39.99,150,9.3,Medio,Habitural
-6,Divinity: Original Sin 2,RPG,44.99,85,9.4,Caro,Habitural
-7,Persona 5 Royal,RPG,59.99,100,9.2,Caro,Habitural
+1,The Witcher 3: Wild Hunt,RPG,29.99,120,9.7,Medio,Habitual
+2,Elden Ring,RPG,59.99,95,9.5,Caro,Habitual
+3,Baldur's Gate 3,RPG,59.99,110,9.8,Caro,Habitual
+4,Cyberpunk 2077,RPG,59.99,65,8.6,Caro,Habitual
+5,Skyrim,RPG,39.99,150,9.3,Medio,Habitual
+6,Divinity: Original Sin 2,RPG,44.99,85,9.4,Caro,Habitual
+7,Persona 5 Royal,RPG,59.99,100,9.2,Caro,Habitual
 8,Disco Elysium,RPG,39.99,30,9.1,Medio,Casual
 9,Counter-Strike 2,Shooter,0.0,850,8.2,Economico,Experto
 10,Doom Eternal,Shooter,39.99,25,8.9,Medio,Casual
 11,Apex Legends,Shooter,0.0,300,8.0,Economico,Experto
-12,Call of Duty: Modern Warfare III,Shooter,69.99,60,6.8,Caro,Habitural
+12,Call of Duty: Modern Warfare III,Shooter,69.99,60,6.8,Caro,Habitual
 13,Halo Infinite,Shooter,59.99,40,7.5,Caro,Casual
-14,Borderlands 3,Shooter,59.99,55,7.7,Caro,Habitural
+14,Borderlands 3,Shooter,59.99,55,7.7,Caro,Habitual
 15,Valorant,Shooter,0.0,420,8.1,Economico,Experto
 16,Overwatch 2,Shooter,0.0,200,7.0,Economico,Experto
-17,Hades,Roguelike,24.99,60,9.4,Medio,Habitural
+17,Hades,Roguelike,24.99,60,9.4,Medio,Habitual
 18,Dead Cells,Roguelike,24.99,45,9.0,Medio,Casual
-19,Slay the Spire,Roguelike,24.99,90,9.5,Medio,Habitural
+19,Slay the Spire,Roguelike,24.99,90,9.5,Medio,Habitual
 20,The Binding of Isaac: Rebirth,Roguelike,14.99,180,9.3,Economico,Experto
-21,Risk of Rain 2,Roguelike,24.99,70,8.8,Medio,Habitural
+21,Risk of Rain 2,Roguelike,24.99,70,8.8,Medio,Habitual
 22,Civilization VI,Estrategia,59.99,230,8.4,Caro,Experto
 23,Age of Empires IV,Estrategia,39.99,50,8.0,Medio,Casual
-24,Total War: Warhammer III,Estrategia,59.99,120,8.3,Caro,Habitural
+24,Total War: Warhammer III,Estrategia,59.99,120,8.3,Caro,Habitual
 25,StarCraft II,Estrategia,0.0,160,9.0,Economico,Experto
-26,XCOM 2,Estrategia,59.99,75,8.7,Caro,Habitural
+26,XCOM 2,Estrategia,59.99,75,8.7,Caro,Habitual
 27,Crusader Kings III,Estrategia,49.99,310,8.9,Caro,Experto
 28,Stellaris,Estrategia,39.99,260,8.2,Medio,Experto
 29,Minecraft,Sandbox,26.95,400,9.4,Medio,Experto
 30,Terraria,Sandbox,9.99,210,9.7,Economico,Experto
 31,Stardew Valley,Simulacion,13.99,160,9.8,Economico,Experto
 32,The Sims 4,Simulacion,0.0,250,7.8,Economico,Experto
-33,Cities: Skylines,Simulacion,29.99,140,8.5,Medio,Habitural
+33,Cities: Skylines,Simulacion,29.99,140,8.5,Medio,Habitual
 34,Euro Truck Simulator 2,Simulacion,19.99,300,9.6,Economico,Experto
-35,Microsoft Flight Simulator,Simulacion,69.99,90,8.4,Caro,Habitural
-36,FIFA 23,Deportes,59.99,110,6.5,Caro,Habitural
+35,Microsoft Flight Simulator,Simulacion,69.99,90,8.4,Caro,Habitual
+36,FIFA 23,Deportes,59.99,110,6.5,Caro,Habitual
 37,Rocket League,Deportes,0.0,350,8.6,Economico,Experto
-38,NBA 2K24,Deportes,69.99,80,5.9,Caro,Habitural
-39,Forza Horizon 5,Carreras,59.99,70,9.1,Caro,Habitural
-40,Assetto Corsa,Carreras,19.99,130,8.7,Economico,Habitural
+38,NBA 2K24,Deportes,69.99,80,5.9,Caro,Habitual
+39,Forza Horizon 5,Carreras,59.99,70,9.1,Caro,Habitual
+40,Assetto Corsa,Carreras,19.99,130,8.7,Economico,Habitual
 41,Super Mario Odyssey,Plataformas,59.99,25,9.7,Caro,Casual
 42,Celeste,Plataformas,19.99,15,9.4,Economico,Casual
-43,Hollow Knight,Metroidvania,14.99,55,9.6,Economico,Habitural
+43,Hollow Knight,Metroidvania,14.99,55,9.6,Economico,Habitual
 44,Ori and the Will of the Wisps,Metroidvania,29.99,20,9.5,Medio,Casual
 45,God of War,Accion-Aventura,49.99,35,9.6,Caro,Casual
-46,Red Dead Redemption 2,Accion-Aventura,59.99,105,9.7,Caro,Habitural
+46,Red Dead Redemption 2,Accion-Aventura,59.99,105,9.7,Caro,Habitual
 47,Grand Theft Auto V,Accion-Aventura,29.99,180,9.2,Medio,Experto
 48,Resident Evil 4 Remake,Terror,59.99,22,9.3,Caro,Casual
-49,Phasmophobia,Terror,13.99,95,8.6,Economico,Habitural
-50,Among Us,Multijugador,4.99,120,7.9,Economico,Habitural
+49,Phasmophobia,Terror,13.99,95,8.6,Economico,Habitual
+50,Among Us,Multijugador,4.99,120,7.9,Economico,Habitual

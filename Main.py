@@ -41,7 +41,7 @@ def menuGameAnalystic():
                 case 1:
                     try:
                         ruta = input("Ingrese la ruta del archivo CSV")
-                        juegos=cargarArchivoCsv(ruta)
+                        juegos = cargarArchivoCsv(ruta)
                         print(f"El archivo {len(juegos)} se ha cargado correctamente.")
 
                     except (

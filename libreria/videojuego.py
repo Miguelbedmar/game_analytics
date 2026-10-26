@@ -9,7 +9,7 @@ class Videojuego:
         self.__horas_jugadas = horas_jugadas
         self.__valoracion = valoracion
 
-    # GETTERS Y SETTERS
+    #   # METODOS GETTERS Y SETTERS
 
     def get_id(self):
         return self.__id
@@ -59,7 +59,7 @@ class Videojuego:
         elif self.__precio <= 40:
             return "Medio"
         return "Caro"
-        # METODOS
+
     def get_nivel_dedicacion(self):
         if self.__horas_jugadas <= 50:
             return "Casual"
