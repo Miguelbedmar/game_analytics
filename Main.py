@@ -2,11 +2,11 @@ import sys  # Libreria sys importada p
 import csv
 from libreria.videojuego import Videojuego  # importamos la clase videojuego
 from pathlib import Path  # Importamos de la librerias pathlib el objeto Path
-import logging
 
-#====================================##
+
+# ====================================##
 # OTRAS FUNCIONES
-#================================= #
+# ================================= #
 
 
 # Función principal para gestionar fichero .csv
@@ -24,18 +24,14 @@ def menuGameAnalystic():
                 case 1:
                     try:
                         ruta = input("Ingrese la ruta del archivo CSV")
-                        cargarArchivoCsv(ruta)
+                        juegos = cargarArchivoCsv(ruta)
 
                     except (
                         EOFError
-                    ) :  # utiliando as  podemos colocarle un alias a cualquier excepcion
-                        logging.error('Ha ocurrido un error! Acceso mas alla del fichero')
-                        
-                    except PermissionError:
-                        raise PermissionError(
-                            " ERROR! El fichero no tiene suficientes permisos"
-                        )
-                    except TypeError :
+                    ):  # utiliando as  podemos colocarle un alias a cualquier excepcion
+                        print("ERROR! Has accedido mas alla del fichero")
+
+                    except TypeError:
                         raise TypeError("ERROR! Se ha detectado un argumento inválido")
 
                     except ValueError:
@@ -47,7 +43,7 @@ def menuGameAnalystic():
                     print("Opcion 3")
 
                 case 4:
-                    logging.info('Has salido  el programa....')
+                    print("Has salido del programa...")
                     sys.exit(0)
 
                 case _:
@@ -65,7 +61,7 @@ def cargarArchivoCsv(ruta: str) -> list[Videojuego]:
         if (
             not archivoCsv.is_file()
         ):  # Raise es equivalente a throws en java por lo tanto podemos personalizar excepciones
-            raise FileNotFoundError(f"ERROR! El archivo no existe en {archivoCsv}")
+            raise FileNotFoundError(f"ERROR! El archivo no existe en {archivoCsv} ")
             # Con un mensaje para cada uno
         if (
             archivoCsv.suffix.lower() != ".csv"
@@ -79,18 +75,21 @@ def cargarArchivoCsv(ruta: str) -> list[Videojuego]:
                     precioValido = float(f["precio"])
                 except ValueError:
                     raise ValueError("ERROR: El precio contiene valores no válidos.")
-                juegoActual = Videojuego(
-                    id=int(f["id"]),
-                    titulo=str(f["titulo"]),
-                    genero=str(f["genero"]),
-                    precio=precioValido,
-                    horas_jugadas=int(f["horas_jugadas"]),
-                    valoracion=float(f["valoracion"]),
-                )
-                videojuegoLista.append(juegoActual)
+                try:
+                    juegoActual = Videojuego(
+                        id=int(f["id"]),
+                        titulo=str(f["titulo"]),
+                        genero=str(f["genero"]),
+                        precio=precioValido,
+                        horas_jugadas=int(f["horas_jugadas"]),
+                        valoracion=float(f["valoracion"]),
+                    )
+                except ValueError:
+                    print("Error! Valores numericos no válidos en el fichero.")
+            videojuegoLista.append(juegoActual)
 
-    except PermissionError as p:
-        print(p)
+    except PermissionError:
+        raise PermissionError("ERROR! No hay suficientes permisos en el fichero.")
     return videojuegoLista
 
 
