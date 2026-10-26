@@ -64,7 +64,7 @@ class Videojuego:
         if self.__horas_jugadas <= 50:
             return "Casual"
         elif self.__horas_jugadas <= 150:
-            return "Habitural"
+            return "Habitual"
         return "Experto"
 
     def __str__(

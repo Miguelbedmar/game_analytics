@@ -23,7 +23,7 @@ def avg(
 
 # Función principal para gestionar fichero .csv
 def menuGameAnalystic():
-
+    juegos: list[Videojuego] = []
     while True:
         print("<====GAME ANALYTICS===========>")
         print("<=====1. CARGAR FICHERO=========>")
@@ -41,7 +41,7 @@ def menuGameAnalystic():
                 case 1:
                     try:
                         ruta = input("Ingrese la ruta del archivo CSV")
-                        juegos = cargarArchivoCsv(ruta)
+                        juegos=cargarArchivoCsv(ruta)
                         print(f"El archivo {len(juegos)} se ha cargado correctamente.")
 
                     except (
@@ -56,10 +56,9 @@ def menuGameAnalystic():
                     except FileNotFoundError:
                         print("ERROR: No existe el fichero indicado ")
                 case 2:
-                    print("Opcion 2")
-
+                    mostrarEstadisticas(juegos)
                 case 3:
-                    print("Opcion 3")
+                    transformarArchivo(juegos)
 
                 case 4:
                     print("Has salido del programa...")
@@ -165,7 +164,7 @@ def transformarArchivo(juegos: list[Videojuego]) -> None:
                     j.get_nivel_dedicacion(),
                 ]
             )
-            print(f"Fichero exportado en : {destinoFichero} correctamente")
+        print(f"Fichero exportado en : {destinoFichero} correctamente")
 
 
 def main():
