@@ -53,6 +53,21 @@ class Videojuego:
         if isinstance(valoracion, float):
             self.__valoracion = valoracion
 
+    def get_categoria_precio(self):
+        if self.__precio<20:
+            return"Economico"
+        elif self.__precio<=40:
+            return"Medio"
+        return "Caro"
+
+    def nivel_dedicacion(self):
+        if self.__horas_jugadas <50:
+            return"Casual"
+        elif self.__horas_jugadas<=150:
+            return"Habitural"
+        return "Experto"
+
+
     def __str__(
         self,
     ):  # Con este metodo imprimiremos la información del objeto videojuego sin necesitar de otro metodo

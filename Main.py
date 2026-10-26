@@ -16,14 +16,19 @@ def menuGameAnalystic():
         print("<=====2. MOSTRAR ESTADÍSTICAS===>")
         print("<====3.EXPORTAR CSV TRANSFORMADO=>")
         print("<====4.SALIR===================> ")
+        print("<====seleccione una opcion======>")
         try:
-            opcionMenu = int(input("Seleccione una opción : "))
-
+            try:
+                opcionMenu = int(input("Seleccione una opción : "))
+            except ValueError:
+                print("Debes de ingresar un numero")
+                continue
             match opcionMenu:
                 case 1:
                     try:
                         ruta = input("Ingrese la ruta del archivo CSV")
                         juegos = cargarArchivoCsv(ruta)
+                        print(f"El archivo {len(juegos)} se ha cargado correctamente.")
 
                     except (
                         EOFError
@@ -31,12 +36,11 @@ def menuGameAnalystic():
                         print("ERROR! Has accedido mas alla del fichero")
 
                     except TypeError:
-                        raise TypeError("ERROR! Se ha detectado un argumento inválido")
-
+                        print("ERROR! Se ha detectado un argumento inválido")
                     except ValueError:
-                        raise ValueError("Error! Has ingresado  un valor inválido")
+                        print("Error! Has ingresado  un valor inválido")
                     except FileNotFoundError:
-                        raise FileNotFoundError("ERROR: No existe el fichero indicado ")
+                        print("ERROR: No existe el fichero indicado ")
                 case 2:
                     print("Opcion 2")
 
@@ -51,7 +55,7 @@ def menuGameAnalystic():
                     print("Opción no válida ")
 
         except ValueError:
-            raise ValueError("ERROR!: El valor ingresado no es válido.")
+            print("Error! Has ingresado  un valor inválido")
 
 
 # Función que  pedira y comproborara la ruta.
@@ -85,25 +89,24 @@ def cargarArchivoCsv(ruta: str) -> list[Videojuego]:
                         horas_jugadas=int(f["horas_jugadas"]),
                         valoracion=float(f["valoracion"]),
                     )
-                except ValueError:
-                    print("Error! Valores numericos no válidos en el fichero.")
+
                     videojuegoLista.append(juegoActual)
 
+                except ValueError:
+                    print("Error! Valores numericos no válidos en el fichero.")
+
     except PermissionError:
-        raise PermissionError("ERROR! No hay suficientes permisos en el fichero.")
+        print("ERROR! No hay suficientes permisos en el fichero.")
     return videojuegoLista
 
 
-def mostrarEstadisticas():
+def mostrarEstadisticas(juegos: list[Videojuego]) -> None:
+    if  not juegos:
+        print("ERROR! Debes cargar un archivo!")
+        return
 
-    try:
-
-        print()
-
-    except FileNotFoundError as e:
-        print("ERROR: No existe el fichero indicado")
-
-
+    precios=[ j.get_precio for j in juegos]
+    
 def transformarArchivo():
     while True:
         try:
