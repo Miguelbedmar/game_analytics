@@ -60,7 +60,7 @@ class Videojuego:
             return "Medio"
         return "Caro"
         # METODOS
-    def nivel_dedicacion(self):
+    def get_nivel_dedicacion(self):
         if self.__horas_jugadas <= 50:
             return "Casual"
         elif self.__horas_jugadas <= 150:

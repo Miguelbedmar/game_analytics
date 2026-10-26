@@ -3,11 +3,19 @@ import csv
 from libreria.videojuego import Videojuego  # importamos la clase videojuego
 from pathlib import Path  # Importamos de la librerias pathlib el objeto Path
 
+# Variables de ruta
+directorioDatos = Path(__file__).parent / "datos"
+ficheroSalida = "videojuegos_transformado.csv"
+
 
 # ====================================##
 # OTRAS FUNCIONES
 # ================================= #
-def avg(valor: list[float]) -> float: # Definicion de la funcion avg  ya que python no tiene integrada avg() nativamente aunque podriamos utilizar otras librerias como estadictis
+def avg(
+    valor: list[float],
+) -> (
+    float
+):  # Definicion de la funcion avg  ya que python no tiene integrada avg() nativamente aunque podriamos utilizar otras librerias como estadictis
     if not valor:
         return 0
     return sum(valor) / len(valor)
@@ -15,6 +23,7 @@ def avg(valor: list[float]) -> float: # Definicion de la funcion avg  ya que pyt
 
 # Función principal para gestionar fichero .csv
 def menuGameAnalystic():
+
     while True:
         print("<====GAME ANALYTICS===========>")
         print("<=====1. CARGAR FICHERO=========>")
@@ -110,20 +119,53 @@ def mostrarEstadisticas(juegos: list[Videojuego]) -> None:
         print("ERROR! Debes cargar un archivo!")
         return
 
-    precios = [p.get_precio() for p in juegos] # Extraemos el precio de cada juego 
+    precios = [p.get_precio() for p in juegos]  # Extraemos el precio de cada juego
     Horas = [h.get_horasJugadas() for h in juegos]
     print("<========Estadísticas==============>")
     print(f"Total Videojuegos: {len(juegos)}")
     print(f"precio medio : {avg(precios):.2f} €")
     print(f"Media de horas de juego : {avg(Horas):.2f} h")
-    
-def transformarArchivo():
-    while True:
-        try:
 
-            break
-        except FileNotFoundError as e:
-            print(e)
+
+def transformarArchivo(juegos: list[Videojuego]) -> None:
+    if not juegos:
+        print("ERROR! Debes cargar un archivo!")
+        return
+    ruta = input("Ingrese la ruta de exportación del nuevo fichero")
+    directori = Path(ruta) if ruta else directorioDatos
+
+    if not directori.is_dir():
+        print("El directorio no existe")
+        return
+    destinoFichero = directori / ficheroSalida
+    with destinoFichero.open("w", newline="", encoding="utf-8") as f:
+        escrito = csv.writer(f)
+        escrito.writerow(
+            [
+                "id",
+                "titulo",
+                "genero",
+                "precio",
+                "horas_jugadas",
+                "valoracion",
+                "categoria_precio",
+                "nivel_dedicacion",
+            ]
+        )
+        for j in juegos:
+            escrito.writerow(
+                [
+                    j.get_id(),
+                    j.get_titulo(),
+                    j.get_genero(),
+                    j.get_precio(),
+                    j.get_horasJugadas(),
+                    j.get_valoracion(),
+                    j.get_categoria_precio(),
+                    j.get_nivel_dedicacion(),
+                ]
+            )
+            print(f"Fichero exportado en : {destinoFichero} correctamente")
 
 
 def main():
