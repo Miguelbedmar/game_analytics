@@ -1,7 +1,7 @@
 import sys  # Libreria sys importada p
 import csv
 from libreria.jugador import jugador
-from libreria.funciones_fichero import cargarArchivoCsv,mostrarEstadisticas,transformarArchivo # Importamos las tres funciones que necesitamos 
+from libreria.funciones_fichero import cargarArchivoCsv,mostrarEstadisticas # Importamos las tres funciones que necesitamos 
 from pathlib import Path  # Importamos de la librerias pathlib el objeto Path
 
 # Variables de ruta
@@ -28,8 +28,8 @@ def menuGameAnalystic():
     while True:  
         print("<=={0:^25}==>".format("GAME ANALYSTIC")) # Indicamos el numero de espaciado 
         print("<=={0:^25}==>".format("1. CARGAR FICHERO"))
-        print("<=={0:^25}==>".format("2. MOSTRAR ESTADÍSTICAS"))
-        print("<=={0:^25}==>".format("3.EXPORTAR CSV TRANSFORMADO"))
+        print("<=={0:^25}==>".format("2. MOSTRAR ESTADÍSTICAS CRISTIANO"))
+        print("<=={0:^25}==>".format("3.MOSTRAR ESTADISTICAS MESSI"))
         print("<=={0:^25}==>".format("4.SALIR"))
         try:
             try:

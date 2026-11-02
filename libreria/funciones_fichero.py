@@ -1,4 +1,8 @@
 import jugador
+from pathlib import Path
+
+directorio_Datos = Path(__file__).parent / "datos"
+fichero_Salida = "jugadores_transformado.csv"
 
 
 def cargarArchivoCsv(ruta: str) -> list[jugador]:
@@ -54,43 +58,3 @@ def mostrarEstadisticas(juegos: list[jugador]) -> None:
     print(f"precio medio : {avg(precios):.2f} €")
     print(f"Media de horas de juego : {avg(Horas):.2f} h")
 
-
-def transformarArchivo(juegos: list[jugador]) -> None:
-    if not juegos:
-        print("ERROR! Debes cargar un archivo!")
-        return
-    ruta = input("Ingrese la ruta de exportación del nuevo fichero")
-    directori = Path(ruta) if ruta else directorio_Datos
-
-    if not directori.is_dir():
-        print("El directorio no existe")
-        return
-    destino_Fichero = directori / fichero_Salida
-    with destino_Fichero.open("w", newline="", encoding="utf-8") as f:
-        escrito = csv.writer(f)
-        escrito.writerow(
-            [
-                "id",
-                "titulo",
-                "genero",
-                "precio",
-                "horas_jugadas",
-                "valoracion",
-                "categoria_precio",
-                "nivel_dedicacion",
-            ]
-        )
-        for j in juegos:
-            escrito.writerow(
-                [
-                    j.get_id(),
-                    j.get_titulo(),
-                    j.get_genero(),
-                    j.get_precio(),
-                    j.get_horasJugadas(),
-                    j.get_valoracion(),
-                    j.get_categoria_precio(),
-                    j.get_nivel_dedicacion(),
-                ]
-            )
-        print(f"Fichero exportado en : {destino_Fichero} correctamente")
