@@ -1,4 +1,4 @@
-class Videojuego:
+class jugador:
 
     # Constructor de la c
     def __init__(self, id, titulo, genero, precio, horas_jugadas, valoracion):
@@ -36,14 +36,14 @@ class Videojuego:
         return self.__precio
 
     def set_precio(self, precio):
-        if isinstance(precio, float,int):
+        if isinstance(precio, float, int):
             self.__precio = precio
 
     def get_horasJugadas(self):
         return self.__horas_jugadas
 
     def set_horasJugadas(self, horas_jugadas):
-        if isinstance(horas_jugadas, int,float):
+        if isinstance(horas_jugadas, int, float):
             self.__horas_jugadas = horas_jugadas
 
     def get_valoracion(self):

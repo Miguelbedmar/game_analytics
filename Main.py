@@ -1,11 +1,11 @@
 import sys  # Libreria sys importada p
 import csv
-from libreria.videojuego import Videojuego  # importamos la clase videojuego
+from libreria.jugador import jugador  # importamos la clase videojuego
 from pathlib import Path  # Importamos de la librerias pathlib el objeto Path
 
 # Variables de ruta
 directorio_Datos = Path(__file__).parent / "datos"
-fichero_Salida = "videojuegos_transformado.csv"
+fichero_Salida = "jugadores_transformado.csv"
 
 
 # ====================================##
@@ -23,14 +23,14 @@ def avg(
 
 # Función principal para gestionar fichero .csv
 def menuGameAnalystic():
-    juegos: list[Videojuego] = []
-    while True:
-        print("<====GAME ANALYTICS===========>")
-        print("<=====1. CARGAR FICHERO=========>")
-        print("<=====2. MOSTRAR ESTADÍSTICAS===>")
-        print("<====3.EXPORTAR CSV TRANSFORMADO=>")
-        print("<====4.SALIR===================> ")
-        print("<====seleccione una opcion======>")
+    juegos: list[jugador] = []
+    while True: # Entre las ventajas que tiene python  uno de ellas es que podemos 
+        print("<=={0:^25}==>".format("GAME ANALYSTIC"))
+        print("<=={0:^25}==>".format("1. CARGAR FICHERO"))
+        print("<=={0:^25}==>".format("2. MOSTRAR ESTADÍSTICAS"))
+        print("<=={0:^25}==>".format("3.EXPORTAR CSV TRANSFORMADO"))
+        print("<=={0:^25}==>".format("4.SALIR"))
+        print("<=={0:^25}==>".format("seleccione una opcion"))
         try:
             try:
                 opcion_Menu = int(input("Seleccione una opción : "))
@@ -40,7 +40,7 @@ def menuGameAnalystic():
             match opcion_Menu:
                 case 1:
                     try:
-                        ruta = input("Ingrese la ruta del archivo CSV")
+                        ruta = input("Ingrese la ruta del archivo CSV ")
                         juegos = cargarArchivoCsv(ruta)
                         print(f"El archivo {len(juegos)} se ha cargado correctamente.")
 
@@ -72,8 +72,8 @@ def menuGameAnalystic():
 
 
 # Función que  pedira y comproborara la ruta.
-def cargarArchivoCsv(ruta: str) -> list[Videojuego]:
-    videojuegoLista = []
+def cargarArchivoCsv(ruta: str) -> list[jugador]:
+    jugadorLista = []
     archivoCsv = Path(ruta.strip())
     try:
         if (
@@ -103,17 +103,17 @@ def cargarArchivoCsv(ruta: str) -> list[Videojuego]:
                         valoracion=float(f["valoracion"]),
                     )
 
-                    videojuegoLista.append(juegoActual)
+                    jugadorLista.append(juegoActual)
 
                 except ValueError:
                     print("Error! Valores numericos no válidos en el fichero.")
 
     except PermissionError:
         print("ERROR! No hay suficientes permisos en el fichero.")
-    return videojuegoLista
+    return jugadorLista
 
 
-def mostrarEstadisticas(juegos: list[Videojuego]) -> None:
+def mostrarEstadisticas(juegos: list[jugador]) -> None:
     if not juegos:
         print("ERROR! Debes cargar un archivo!")
         return
@@ -126,7 +126,7 @@ def mostrarEstadisticas(juegos: list[Videojuego]) -> None:
     print(f"Media de horas de juego : {avg(Horas):.2f} h")
 
 
-def transformarArchivo(juegos: list[Videojuego]) -> None:
+def transformarArchivo(juegos: list[jugador]) -> None:
     if not juegos:
         print("ERROR! Debes cargar un archivo!")
         return
