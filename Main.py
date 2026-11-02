@@ -1,7 +1,7 @@
 import sys  # Libreria sys importada p
 import csv
 from libreria.jugador import jugador
-from libreria.funciones_fichero import cargarArchivoCsv,mostrarEstadisticas,transformarArchivo  # importamos la clase videojuego
+from libreria.funciones_fichero import cargarArchivoCsv,mostrarEstadisticas,transformarArchivo # Importamos las tres funciones que necesitamos 
 from pathlib import Path  # Importamos de la librerias pathlib el objeto Path
 
 # Variables de ruta

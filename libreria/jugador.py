@@ -1,8 +1,8 @@
 class jugador:
 
     # Constructor de la c
-    def __init__(self, id, titulo, genero, precio, horas_jugadas, valoracion):
-        self.__id = id
+    def __init__(self, idjugador, titulo, genero, precio, horas_jugadas, valoracion):
+        self.__idjugador= idjugador
         self.__titulo = titulo
         self.__genero = genero
         self.__precio = precio
@@ -12,11 +12,11 @@ class jugador:
     #   # METODOS GETTERS Y SETTERS
 
     def get_id(self):
-        return self.__id
+        return self.__idjugador
 
-    def set_id(self, id):
-        if isinstance(id, int):
-            self.__id = id
+    def set_id(self, idjugador):
+        if isinstance(idjugador, int):
+            self.__idjugador = idjugador
 
     def get_titulo(self):
         return self.__titulo
@@ -70,4 +70,4 @@ class jugador:
     def __str__(
         self,
     ):  # Con este metodo imprimiremos la información del objeto videojuego sin necesitar de otro metodo
-        return f"Videojuegos:ID{self.__id}|Nombre:{self.__titulo}|Genero:{self.__genero}|Precio{self.__precio}|Horas Jugadas{self.__horas_jugadas}|Valoracion{self.__valoracion}"
+        return f"Videojuegos:ID{self.__idjugador}|Nombre:{self.__titulo}|Genero:{self.__genero}|Precio{self.__precio}|Horas Jugadas{self.__horas_jugadas}|Valoracion{self.__valoracion}"
