@@ -1,26 +1,48 @@
-from libreria import jugador
-class estadisticas(jugador):
-    def __init__(self,nombre,numero_temporada,partidos_ganados,gole_totale):
-        super().__ini__(nombre)
-
-        self.numero_temporada=numero_temporada
-        self.partidos_ganados=partidos_ganados
-        self.gole_totale=gole_totale
+class estadisticas:
+    # CONSTRUCTOR
     def __init__(
         self,
-        partido_totale,
-        cantidad_aparece_jugador,
+        nombre_jugador,
         numero_temporada,
-        partido_ganado_equipo,
-        gole_totale,
-        porcentaje_victoria,
-        cantidad_vece_rival,
+        partidos_ganados,
+        partido_competicion,
+        partido_club,
+        partido_rival,
     ):
-        super().__ini__()
-        self.partido_totale = partido_totale
-        self.cantidad_aparece_jugador = cantidad_aparece_jugador
-        self.numero_temporada = numero_temporada
-        self.partido_ganado_equipo = partido_ganado_equipo
-        self.gole_totale = gole_totale
-        self.porcentaje_victoria = porcentaje_victoria
-        self.cantidad_vece_rival = cantidad_vece_rival
+        self.__nombre_jugador = nombre_jugador
+        self.__numero_temporada = numero_temporada
+        self.__partidos_ganados = partidos_ganados
+        self.__partido_competicion = partido_competicion
+        self.__partido_club = partido_club
+        self.__partido_rival = partido_rival
+
+    # METODOS GETTERS YSETTES
+
+    def get_nombre_jugador(self):
+        return self.__nombre_jugador
+
+    def get_partidos_por_competicion(self):
+        return self.__partido_competicion
+
+    def get_numero_temporadas(self):
+        return self.__numero_temporada
+
+    def get_partidos_ganados(self):
+        return self.__partidos_ganados
+
+    def get_partidos_por_club(self):
+        return self.__partido_club
+
+    def get_partidos_por_rival(self):
+        return self.__partido_rival
+
+    def get_total_partidos(self): #Calculamos el totla de partidos por competicion
+        return sum(self.__partido_competicion.values())
+
+    def __str__(  # Con este metodo imprimiremos la información del objeto estadistica sin necesitar de otro metodo
+        self,
+    ):
+        return (
+            f"Estadisticas: {self.__nombre_jugador}|Partidos:{self.get_total_partidos()}"
+            f"|Temporadas:{self.__numero_temporada}|Ganados:{self.__partidos_ganados}"
+        )

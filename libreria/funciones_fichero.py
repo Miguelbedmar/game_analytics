@@ -1,5 +1,6 @@
 from libreria.jugador import jugador
 from pathlib import Path
+from libreria.estadisticas import estadisticas
 import csv
 
 
@@ -28,7 +29,7 @@ def cargar_archivo_csv(ruta: str | Path) -> list[jugador]:
             for f in dato:
 
                 try:
-                    jugador_actual = juegador(
+                    jugador_actual = jugador(
                         nombre_jugador=f["Player"],
                         temporada=f["Season"],
                         competicion=f["Competition"],
@@ -67,7 +68,42 @@ def mostrar_estadisticas(juegos: list[jugador]) -> None:
     print(f"precio medio : {avg(precios):.2f} €")
     print(f"Media de horas de juego : {avg(horas):.2f} h")
 
+
 # ====================================#
-# FUNCIONES E
-# 
+# FUNCIONES PREPACION DE DATOS Y Normalizacion
 # =======================================##
+
+# Columna competiciones normalizada
+
+Competicione_normalizada = {  # por medio de diccionario
+    "Champions League": "UEFA Champions League",
+    "Troph\ufffde des Champions": "Trophée des Champions",
+}
+
+
+def normalizar_competicion(nombre: str) -> str:  # tratamos las competiciones
+    nombre = nombre.strip()  # eliminamos los espacios
+    return Competicione_normalizada.get(nombre, nombre)
+
+
+def obtener_partido_jugador(listado: list[jugador], nombre: str) -> list[jugador]:
+    partido = []
+
+    for listado in listado:
+        if listado.get_nombre_jugador().strip() == nombre:
+            valor = (listado.get_fecha(), listado.get_equipo_rival().strip())
+            if valor not in partido:
+                partido[valor] = listado
+
+    return list(partido.values())
+
+
+def contador_temporada(partido: list[jugador]) -> dict:
+    temporada = {}
+    for partido in partido:
+        temporada.add(
+            partido.get_temporada().strip()
+        )  # otenemos la temporada y la añadimos a la lista
+    return len(temporada)
+
+def partido_victoria(partido:list[jugador])-> bool
