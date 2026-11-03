@@ -27,11 +27,25 @@ def cargar_archivo_csv(ruta: str | Path) -> list[jugador]:
 
             for f in dato:
 
-                try:    
-                    jugador_actual=juegador()
-                        
+                try:
+                    jugador_actual = juegador(
+                        nombre_jugador=f["Player"],
+                        temporada=f["Season"],
+                        competicion=f["Competition"],
+                        jornada=f["Matchday"],
+                        fecha=f["Date"],
+                        sede=f["Venue"],
+                        club=f["Club"],
+                        equipo_rival=f["Opponent"],
+                        resultado_partido=f["Result"],
+                        posicion=f["Playing_Position"],
+                        minuto=f["Minute"],
+                        marcador=f["At_score"],
+                        tipo=f["Type"],
+                        asistente_gol=f["Goal_assist"],
+                    )
 
-                    jugador_lista.append(juegador_actual)
+                    jugador_lista.append(jugador_actual)
 
                 except ValueError:
                     print("Error! Valores numericos no válidos en el fichero.")
@@ -52,3 +66,8 @@ def mostrar_estadisticas(juegos: list[jugador]) -> None:
     print(f"Total Videojuegos: {len(juegos)}")
     print(f"precio medio : {avg(precios):.2f} €")
     print(f"Media de horas de juego : {avg(horas):.2f} h")
+
+# ====================================#
+# FUNCIONES E
+# 
+# =======================================##
