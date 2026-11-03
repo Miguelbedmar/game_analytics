@@ -98,6 +98,16 @@ def obtener_partido_jugador(listado: list[jugador], nombre: str) -> list[jugador
     return list(partido.values())
 
 
+
+def contar_partido_competicion(partido: list[jugador]) -> dict:
+    contador = {}
+
+    for partido in partido:
+        competicion = normalizar_competicion(partido.get_competicion())
+        contador[competicion] = contador.get(competicion, 0) + 1
+    return dict(sorted(contador.items(), key=lambda x: x[1], reverse=True))
+
+
 def contador_temporada(partido: list[jugador]) -> dict:
     temporada = {}
     for partido in partido:
@@ -106,4 +116,65 @@ def contador_temporada(partido: list[jugador]) -> dict:
         )  # otenemos la temporada y la añadimos a la lista
     return len(temporada)
 
-def partido_victoria(partido:list[jugador])-> bool
+
+def partido_victoria(partido: list[jugador]) -> bool:
+    marcador = partido.get_resultado_partido().strip()[0]
+    local, visitante = marcador.split(":")
+    local = int(local)
+    visitante = int(visitante)
+    if partido.get_sede().strip() == "H":
+        return local > visitante
+    return visitante > local
+
+
+def contador_victoria(
+    partido: list[jugador],
+) -> int:  # Por cada victoria que tenga el fichero el contador aumentara
+    victorias = 0
+    for partido in partido:
+        if partido_victoria(partido):
+            victorias += 1
+    return victorias
+
+def contar_partido_ganado(partido:contar_partido_competicion)-> int:
+    contador = 0
+    for partido in partido:
+        if partido_victoria(partido):
+            contador += 1
+    return contador
+
+
+def contador_partido_club(
+    partido: list[jugador],
+) -> dict:  # Esta función contara cada partido segun el club
+    contador = {}
+
+    for partido in partido:
+        club = partido.get_club().split()
+        contador[club] = contador.get(club, 0) + 1
+    return contador
+
+
+def contar_partido_rival(partido: list[jugador]) -> dict:
+    contador = {}
+
+    for partido in partido:
+        equipo_rival = partido.get_equipo_rival().strip()
+        contador[equipo_rival] = contador.get(equipo_rival, 0) + 1
+    return contador
+
+
+###
+# ==================================================================|
+# CRAMOS LAS ESTADISTICAS ANTES DE MOSTRALAS EN MOSTRAR_ESTADISTICAS|
+# ==================================================================|
+# ##############3
+
+def crear_estadisticas(partido: list[jugador], nombre: str) -> estadisticas:
+    partido = obtener_partido_jugador(partido, nombre)
+
+    return estadisticas(
+        nombre,
+        contar_partido_competicion(partido),
+        contador_temporada(partido),
+        contador_victoria(partido),
