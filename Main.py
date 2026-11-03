@@ -32,11 +32,12 @@ def avg(
 # Función principal para gestionar fichero .csv
 def menu_game_analystic():
     try:
-        registros = cargar_archivo_csv(directorio_datos)
-    except (fileNotFoundError, ValueError) as error:
+        registro = cargar_archivo_csv(directorio_datos)
+    except (FileNotFoundError, ValueError) as error:
         print("ERRO!  el archivo no existe o no tiene la extension correcta" + error)
-        messi = crear_estadisticas(registros, "Lionel Messi")
-        cristiano = crear_estadisticas(registros, "Cristiano Ronaldo")
+        return
+    messi = crear_estadisticas(registro, "Lionel Messi")
+    cristiano = crear_estadisticas(registro, "Cristiano Ronaldo")
     while True:
         print(
             "<=={0:^25}==>".format("GAME ANALYSTIC")

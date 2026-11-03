@@ -84,7 +84,7 @@ def normalizar_competicion(nombre: str) -> str:  # tratamos las competiciones
 
 
 def obtener_partido_jugador(listado: list[jugador], nombre: str) -> list[jugador]:
-    partido = []
+    partido = {}
 
     for listado in listado:
         if listado.get_nombre_jugador().strip() == nombre:
@@ -114,7 +114,7 @@ def contador_temporada(partido: list[jugador]) -> dict:
 
 
 def partido_victoria(partido: list[jugador]) -> bool:
-    marcador = partido.get_resultado_partido().strip()[0]
+    marcador = partido.get_resultado_partido().split()[0]
     local, visitante = marcador.split(":")
     local = int(local)
     visitante = int(visitante)
@@ -133,21 +133,13 @@ def contador_victoria(
     return victorias
 
 
-def contar_partido_ganado(partido: contar_partido_competicion) -> int:
-    contador = 0
-    for partido in partido:
-        if partido_victoria(partido):
-            contador += 1
-    return contador
-
-
 def contador_partido_club(
     partido: list[jugador],
 ) -> dict:  # Esta función contara cada partido segun el club
     contador = {}
 
     for partido in partido:
-        club = partido.get_club().split()
+        club = partido.get_club().strip()
         contador[club] = contador.get(club, 0) + 1
     return contador
 
