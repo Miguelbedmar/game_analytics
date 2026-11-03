@@ -1,4 +1,4 @@
-import jugador
+from libreria import jugador
 from pathlib import Path
 
 directorio_Datos = Path(__file__).parent / "datos"
@@ -57,4 +57,3 @@ def mostrarEstadisticas(juegos: list[jugador]) -> None:
     print(f"Total Videojuegos: {len(juegos)}")
     print(f"precio medio : {avg(precios):.2f} €")
     print(f"Media de horas de juego : {avg(Horas):.2f} h")
-

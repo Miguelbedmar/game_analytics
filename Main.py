@@ -1,12 +1,24 @@
 import sys  # Libreria sys importada p
 import csv
+
 from libreria.jugador import jugador
-from libreria.funciones_fichero import cargarArchivoCsv,mostrarEstadisticas # Importamos las tres funciones que necesitamos 
+from libreria.funciones_fichero import (
+    cargarArchivoCsv,
+    mostrarEstadisticas,
+)  # Importamos las dos funciones que necesitamos
 from pathlib import Path  # Importamos de la librerias pathlib el objeto Path
+from getpass import getuser
 
 # Variables de ruta
-directorio_Datos = Path(__file__).parent / "datos"
-fichero_Salida = "jugadores_transformado.csv"
+directorio_Datos = Path(__file__).resolve().parent /"datos"/ "data.csv"
+
+directorio_str=str(directorio_Datos)
+
+
+fichero_cargado=cargarArchivoCsv(directorio_Datos)
+
+# Obtenemos el usuario del equipo utilizando la libreria getPass especificando que unicamente nos importe el metodogetUser().
+usuario_ordenador = getuser()
 
 
 # ====================================##
@@ -25,12 +37,18 @@ def avg(
 # Función principal para gestionar fichero .csv
 def menuGameAnalystic():
     juegos: list[jugador] = []
-    while True:  
-        print("<=={0:^25}==>".format("GAME ANALYSTIC")) # Indicamos el numero de espaciado 
-        print("<=={0:^25}==>".format("1. CARGAR FICHERO"))
-        print("<=={0:^25}==>".format("2. MOSTRAR ESTADÍSTICAS CRISTIANO"))
-        print("<=={0:^25}==>".format("3.MOSTRAR ESTADISTICAS MESSI"))
-        print("<=={0:^25}==>".format("4.SALIR"))
+    juegos = cargarArchivoCsv(fichero_cargado)
+
+    while True:
+        print(
+            "<=={0:^25}==>".format("GAME ANALYSTIC")
+        )  # Indicamos el numero de espaciado
+        print(
+            "<=={0:^25}==>".format(f"BIENVENIDO : {usuario_ordenador}")
+        )  # Personalizamos  el menu saludando al usuario
+        print("<=={0:^25}==>".format("1. MOSTRAR ESTADÍSTICAS CRISTIANO"))
+        print("<=={0:^25}==>".format("2.MOSTRAR ESTADISTICAS MESSI"))
+        print("<=={0:^25}==>".format("3.SALIR"))
         try:
             try:
                 opcion_Menu = int(input("Seleccione una opción : "))
@@ -39,30 +57,16 @@ def menuGameAnalystic():
                 continue
             match opcion_Menu:
                 case 1:
-                    try:
-                        ruta = input("Ingrese la ruta del archivo CSV ")
-                        juegos = cargarArchivoCsv(ruta)
-                        print(f"El archivo {len(juegos)} se ha cargado correctamente.")
 
-                    except (
-                        EOFError
-                    ):  # utiliando as  podemos colocarle un alias a cualquier excepcion
-                        print("ERROR! Has accedido mas alla del fichero")
+                    
+                    print(f"El archivo {len(juegos)} se ha cargado correctamente.")
 
-                    except TypeError:
-                        print("ERROR! Se ha detectado un argumento inválido")
-                    except ValueError:
-                        print("Error! Has ingresado  un valor inválido")
-                    except FileNotFoundError:
-                        print("ERROR: No existe el fichero indicado ")
                 case 2:
                     mostrarEstadisticas(juegos)
                 case 3:
-                    transformarArchivo(juegos)
-
-                case 4:
                     print("Has salido del programa...")
                     sys.exit(0)
+                    
 
                 case _:
                     print("Opción no válida ")
@@ -72,6 +76,7 @@ def menuGameAnalystic():
 
 
 # Función que  pedira y comproborara la ruta.
+
 
 def main():
     menuGameAnalystic()

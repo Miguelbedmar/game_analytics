@@ -1,13 +1,13 @@
 class jugador:
 
     # Constructor de la c
-    def __init__(self, idjugador, titulo, genero, precio, horas_jugadas, valoracion):
-        self.__idjugador= idjugador
-        self.__titulo = titulo
-        self.__genero = genero
-        self.__precio = precio
-        self.__horas_jugadas = horas_jugadas
-        self.__valoracion = valoracion
+    def __init__(self, idjugador, nombre, apellido, liga, gole, posicion):
+        self.__idjugador = idjugador
+        self.__nombre = nombre
+        self.__apellido = apellido
+        self.__liga = liga
+        self.__gole = gole
+        self.__posicion = posicion
 
     #   # METODOS GETTERS Y SETTERS
 
@@ -18,40 +18,40 @@ class jugador:
         if isinstance(idjugador, int):
             self.__idjugador = idjugador
 
-    def get_titulo(self):
-        return self.__titulo
+    def get_nombre(self):
+        return self.__nombre
 
-    def set_titulo(self, titulo):
-        if isinstance(titulo, str):
-            self.__titulo = titulo
+    def set_titulo(self, nombre):
+        if isinstance(nombre, str):
+            self.__nombre = nombre
 
-    def get_genero(self):
-        return self.__genero
+    def get_apellido(self):
+        return self.__apellido
 
-    def set_genero(self, genero):
-        if isinstance(genero, str):
-            self.__genero = genero
+    def set_apellido(self, apellido):
+        if isinstance(apellido, str):
+            self.__apellido = apellido
 
-    def get_precio(self):
-        return self.__precio
+    def get_liga(self):
+        return self.__liga
 
-    def set_precio(self, precio):
-        if isinstance(precio, float, int):
-            self.__precio = precio
+    def set_liga(self, liga):
+        if isinstance(liga, float, int):
+            self.__liga = liga
 
-    def get_horasJugadas(self):
-        return self.__horas_jugadas
+    def get_gole(self):
+        return self.__gole
 
-    def set_horasJugadas(self, horas_jugadas):
-        if isinstance(horas_jugadas, int, float):
-            self.__horas_jugadas = horas_jugadas
+    def set_gole(self, gole):
+        if isinstance(gole, int, float):
+            self.__gole = gole
 
-    def get_valoracion(self):
-        return self.__valoracion
+    def get_posicion(self):
+        return self.__posicion
 
-    def set_valoracion(self, valoracion):
-        if isinstance(valoracion, float):
-            self.__valoracion = valoracion
+    def set_posicion(self, posicion):
+        if isinstance(posicion, float):
+            self.__posicion = posicion
 
     def get_categoria_precio(self):
         if self.__precio <= 20:
@@ -70,4 +70,4 @@ class jugador:
     def __str__(
         self,
     ):  # Con este metodo imprimiremos la información del objeto videojuego sin necesitar de otro metodo
-        return f"Videojuegos:ID{self.__idjugador}|Nombre:{self.__titulo}|Genero:{self.__genero}|Precio{self.__precio}|Horas Jugadas{self.__horas_jugadas}|Valoracion{self.__valoracion}"
+        return f"Jugador:ID{self.__idjugador}|Nombre:{self.__nombre}|Apellido:{self.__apellido}|Liga{self.__liga}|Goles{self.__gole}|Posicion{self.__posicion}"
