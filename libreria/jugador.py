@@ -2,7 +2,7 @@ from datetime import date
 from datetime import time
 
 
-class jugador():
+class jugador:
 
     # Constructor de la c
     def __init__(
@@ -85,11 +85,9 @@ class jugador():
         self,
     ):  # Con este metodo imprimiremos la información del objeto videojuego sin necesitar de otro metodo
         return (
-            f"Jugador: Nombre del Jugador: {self.__nombre_jugador}f|Temporada:{self.__temporada}|Competicion: {self.__competicion}",
-            f"|Jornada: {self.__jornada}|Fecha:{self.__fecha}|Club: {self.__club}",
-            f"|Sede:{self.__sede}|Equipo Rival : {self.__equipo_rival}| Resultado del Partido: {self.__resultado_partido}
+            f"Jugador: Nombre del Jugador: {self.__nombre_jugador}f|Temporada:{self.__temporada}|Competicion: {self.__competicion}"
+            f"|Jornada: {self.__jornada}|Fecha:{self.__fecha}|Club: {self.__club}"
+            f"|Sede:{self.__sede}|Equipo Rival : {self.__equipo_rival}| Resultado del Partido: {self.__resultado_partido}"
             f"|Posicion: {self.__posicion}|Minuto: {self.__minuto}|Marcador:{self.__marcador}"
             f"|Tipo:{self.__tipo}|Asistencia: {self.__asistente_gol}"
-            
-            
-            )
+        )
