@@ -1,23 +1,56 @@
+from datetime import date
+from dataclasses import dataclass
+@dataclass
 class jugador:
-
+    __nombre_jugador:str
     # Constructor de la c
-    def __init__(self, jugador_partido, temporada, gole, posicion):
-        self.__jugador_partido = jugador_partido
+    def __init__(
+        self,
+        nombre_jugador:str,
+        temporada:str,
+        competicion:str,
+        jornada:str,
+        fecha: date,
+        sede:str,
+        club:str,
+        equipo_rival:str,
+        resultado_partido,
+        posicion,
+        minuto,
+        marcador,
+        tipo,
+        asistente_gol,
+    ):
+        self.__nombre_jugador = nombre_jugador
         self.__temporada = temporada
-        self.__gole = gole
+        self.__competicion = competicion
+        self.__jornada = jornada
+        self.__fecha = fecha
+        self.__sede = sede
+        self.__club = club
+        self.__equipo_rival = equipo_rival
+        self.__resultado_partido = resultado_partido
         self.__posicion = posicion
+        self.__minuto = minuto
+        self.__marcador = marcador
+        self.__tipo = tipo
+        self.__asistente_gol = asistente_gol
 
     #   # METODOS GETTERS Y SETTERS
 
     def get_jugador_partida(self):
-        return self.__jugador_partido
+        return self.__nombre_jugador
 
-    def get_gole(self):
-        return self.__gole
+    def set_jugador_partida(self, nombre_jugador):
+        if isinstance(nombre_jugador, str):
+            self.__nombre_jugador = nombre_jugador
 
-    def set_gole(self, gole):
-        if isinstance(gole, int, float):
-            self.__gole = gole
+    def get_temporada(self):
+        return self.__temporada
+
+    def set_temporada(self, temporada):
+        if isinstance(temporada, str):
+            self.__temporada = temporada
 
     def get_posicion(self):
         return self.__posicion
