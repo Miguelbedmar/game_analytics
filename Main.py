@@ -1,7 +1,6 @@
 import sys  # Libreria sys importada p
 import csv
 
-from libreria import jugador
 from libreria.funciones_fichero import cargar_archivo_csv, mostrar_estadisticas
 from pathlib import Path  # Importamos de la librerias pathlib el objeto Path
 from getpass import getuser
@@ -29,7 +28,6 @@ def avg(
 
 # Función principal para gestionar fichero .csv
 def menu_game_analystic():
-    juegos: list[jugador] = []
     juegos = cargar_archivo_csv(directorio_Datos)
 
     while True:

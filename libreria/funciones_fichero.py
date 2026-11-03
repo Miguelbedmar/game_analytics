@@ -1,55 +1,53 @@
-import jugador
+from libreria.jugador import jugador
 from pathlib import Path
-
+import csv
 directorio_Datos = Path(__file__).parent / "datos"
 
 
 def cargar_archivo_csv(ruta: str | Path) -> list[jugador]:
-    jugadorLista = []
-    archivoCsv = Path(ruta.strip)
+    jugador_lista = []
+    archivo_csv = Path(ruta.strip)
 
     if isinstance(ruta, str):
-        archivoCsv = Path(ruta.strip)
+        archivo_csv = Path(ruta.strip)
 
     else:
-        archivoCsv = Path(ruta)
+        archivo_csv = Path(ruta)
 
     try:
         if (
-            not archivoCsv.is_file()
+            not archivo_csv.is_file()
         ):  # Raise es equivalente a throws en java por lo tanto podemos personalizar excepciones
             raise FileNotFoundError("ERROR: No existe el fichero indicado")
             # Con un mensaje para cada uno
         if (
-            archivoCsv.suffix.lower() != ".csv"
+            archivo_csv.suffix.lower() != ".csv"
         ):  # Comprobamos si la extensión del archivo es csv
             raise ValueError("ERROR! El fichero debe tener extensión .csv")
-        with archivoCsv.open("r", newline="", encoding="utf-8") as fichero:
+        with archivo_csv.open("r", newline="", encoding="utf-8") as fichero:
             dato = csv.DictReader(fichero)
 
             for f in dato:
+                
                 try:
-                    precio_Valido = float(f["precio"])
-                except ValueError:
-                    raise ValueError("ERROR: El precio contiene valores no válidos.")
-                try:
-                    juegoActual = Videojuego(
-                        id=int(f["id"]),
-                        titulo=str(f["titulo"]),
-                        genero=str(f["genero"]),
-                        precio=precio_Valido,
-                        horas_jugadas=int(f["horas_jugadas"]),
-                        valoracion=float(f["valoracion"]),
+                    juegador_actual = jugador(
+                        id_jugador=int(f["id_jugador"]),
+                        nombre=str(f["nombre"]),
+                        apellido=str(f["apellido"]),
+                        liga=str(f["liga"]),
+                        gole=int(f["gole"]).
+                        posicion=str(f["posicion"])
+                    
                     )
 
-                    jugadorLista.append(juegoActual)
+                    jugador_lista.append(juegador_actual)
 
                 except ValueError:
                     print("Error! Valores numericos no válidos en el fichero.")
 
     except PermissionError:
         print("ERROR! No hay suficientes permisos en el fichero.")
-    return jugadorLista
+    return jugador_lista
 
 
 def mostrar_estadisticas(juegos: list[jugador]) -> None:
@@ -58,8 +56,8 @@ def mostrar_estadisticas(juegos: list[jugador]) -> None:
         return
 
     precios = [p.get_precio() for p in juegos]  # Extraemos el precio de cada juego
-    Horas = [h.get_horasJugadas() for h in juegos]
+    horas = [h.get_horasJugadas() for h in juegos]
     print("<========Estadísticas==============>")
     print(f"Total Videojuegos: {len(juegos)}")
     print(f"precio medio : {avg(precios):.2f} €")
-    print(f"Media de horas de juego : {avg(Horas):.2f} h")
+    print(f"Media de horas de juego : {avg(horas):.2f} h")

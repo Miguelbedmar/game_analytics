@@ -1,8 +1,8 @@
 class jugador:
 
     # Constructor de la c
-    def __init__(self, idjugador, nombre, apellido, liga, gole, posicion):
-        self.__idjugador = idjugador
+    def __init__(self, id_jugador, nombre, apellido, liga, gole, posicion):
+        self.__id_jugador = id_jugador
         self.__nombre = nombre
         self.__apellido = apellido
         self.__liga = liga
@@ -12,11 +12,11 @@ class jugador:
     #   # METODOS GETTERS Y SETTERS
 
     def get_id(self):
-        return self.__idjugador
+        return self.__id_jugador
 
-    def set_id(self, idjugador):
-        if isinstance(idjugador, int):
-            self.__idjugador = idjugador
+    def set_id(self, id_jugador):
+        if isinstance(id_jugador, int):
+            self.__id_jugador = id_jugador
 
     def get_nombre(self):
         return self.__nombre
