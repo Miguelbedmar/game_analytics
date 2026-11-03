@@ -1,5 +1,5 @@
 
-class estadisticas:
+class estadisticas: # Creamos clase estadistica 
     # CONSTRUCTOR
     def __init__(
         self,

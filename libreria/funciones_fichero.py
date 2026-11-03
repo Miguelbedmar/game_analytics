@@ -105,7 +105,7 @@ def contar_partido_competicion(partido: list[jugador]) -> dict:
 
 
 def contador_temporada(partido: list[jugador]) -> dict:
-    temporada = {}
+    temporada = set()  # Creamos un set para que no se repitan las temporadas
     for partido in partido:
         temporada.add(
             partido.get_temporada().strip()
@@ -165,9 +165,9 @@ def crear_estadisticas(partido: list[jugador], nombre: str) -> estadisticas:
 
     return estadisticas(
         nombre,
-        contar_partido_competicion(partido),
         contador_temporada(partido),
         contador_victoria(partido),
+        contar_partido_competicion(partido),
         contador_partido_club(partido),
         contar_partido_rival(partido),
     )
