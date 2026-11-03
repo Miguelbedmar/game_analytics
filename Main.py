@@ -10,12 +10,9 @@ from pathlib import Path  # Importamos de la librerias pathlib el objeto Path
 from getpass import getuser
 
 # Variables de ruta
-directorio_Datos = Path(__file__).resolve().parent /"datos"/ "data.csv"
-
-directorio_str=str(directorio_Datos)
+directorio_Datos = Path(__file__).resolve().parent / "datos" / "data.csv"
 
 
-fichero_cargado=cargarArchivoCsv(directorio_Datos)
 
 # Obtenemos el usuario del equipo utilizando la libreria getPass especificando que unicamente nos importe el metodogetUser().
 usuario_ordenador = getuser()
@@ -37,7 +34,7 @@ def avg(
 # Función principal para gestionar fichero .csv
 def menuGameAnalystic():
     juegos: list[jugador] = []
-    juegos = cargarArchivoCsv(fichero_cargado)
+    juegos = cargarArchivoCsv(directorio_Datos)
 
     while True:
         print(
@@ -57,16 +54,13 @@ def menuGameAnalystic():
                 continue
             match opcion_Menu:
                 case 1:
-
-                    
-                    print(f"El archivo {len(juegos)} se ha cargado correctamente.")
+                    mostrarEstadisticas(juegos)
 
                 case 2:
                     mostrarEstadisticas(juegos)
                 case 3:
                     print("Has salido del programa...")
                     sys.exit(0)
-                    
 
                 case _:
                     print("Opción no válida ")

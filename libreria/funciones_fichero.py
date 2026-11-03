@@ -2,12 +2,18 @@ from libreria import jugador
 from pathlib import Path
 
 directorio_Datos = Path(__file__).parent / "datos"
-fichero_Salida = "jugadores_transformado.csv"
 
 
-def cargarArchivoCsv(ruta: str) -> list[jugador]:
+def cargarArchivoCsv(ruta: str | Path) -> list[jugador]:
     jugadorLista = []
-    archivoCsv = Path(ruta.strip())
+    archivoCsv = Path(ruta.strip)
+
+    if isinstance(ruta, str):
+        archivoCsv = Path(ruta.strip)
+
+    else:
+        archivoCsv = Path(ruta)
+
     try:
         if (
             not archivoCsv.is_file()
