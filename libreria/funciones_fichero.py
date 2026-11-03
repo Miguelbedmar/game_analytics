@@ -1,10 +1,10 @@
-from libreria import jugador
+import jugador
 from pathlib import Path
 
 directorio_Datos = Path(__file__).parent / "datos"
 
 
-def cargarArchivoCsv(ruta: str | Path) -> list[jugador]:
+def cargar_archivo_csv(ruta: str | Path) -> list[jugador]:
     jugadorLista = []
     archivoCsv = Path(ruta.strip)
 
@@ -52,7 +52,7 @@ def cargarArchivoCsv(ruta: str | Path) -> list[jugador]:
     return jugadorLista
 
 
-def mostrarEstadisticas(juegos: list[jugador]) -> None:
+def mostrar_estadisticas(juegos: list[jugador]) -> None:
     if not juegos:
         print("ERROR! Debes cargar un archivo!")
         return

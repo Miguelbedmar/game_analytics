@@ -1,17 +1,13 @@
 import sys  # Libreria sys importada p
 import csv
 
-from libreria.jugador import jugador
-from libreria.funciones_fichero import (
-    cargarArchivoCsv,
-    mostrarEstadisticas,
-)  # Importamos las dos funciones que necesitamos
+from libreria import jugador
+from libreria.funciones_fichero import cargar_archivo_csv, mostrar_estadisticas
 from pathlib import Path  # Importamos de la librerias pathlib el objeto Path
 from getpass import getuser
 
 # Variables de ruta
 directorio_Datos = Path(__file__).resolve().parent / "datos" / "data.csv"
-
 
 
 # Obtenemos el usuario del equipo utilizando la libreria getPass especificando que unicamente nos importe el metodogetUser().
@@ -32,9 +28,9 @@ def avg(
 
 
 # Función principal para gestionar fichero .csv
-def menuGameAnalystic():
+def menu_game_analystic():
     juegos: list[jugador] = []
-    juegos = cargarArchivoCsv(directorio_Datos)
+    juegos = cargar_archivo_csv(directorio_Datos)
 
     while True:
         print(
@@ -48,16 +44,16 @@ def menuGameAnalystic():
         print("<=={0:^25}==>".format("3.SALIR"))
         try:
             try:
-                opcion_Menu = int(input("Seleccione una opción : "))
+                opcion_menu = int(input("Seleccione una opción : "))
             except ValueError:
                 print("Debes de ingresar un numero")
                 continue
-            match opcion_Menu:
+            match opcion_menu:
                 case 1:
-                    mostrarEstadisticas(juegos)
+                    mostrar_estadisticas(juegos)
 
                 case 2:
-                    mostrarEstadisticas(juegos)
+                    mostrar_estadisticas(juegos)
                 case 3:
                     print("Has salido del programa...")
                     sys.exit(0)
@@ -73,7 +69,7 @@ def menuGameAnalystic():
 
 
 def main():
-    menuGameAnalystic()
+    menu_game_analystic()
 
 
 if __name__ == "__main__":
