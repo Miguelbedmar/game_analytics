@@ -27,14 +27,9 @@ def cargar_archivo_csv(ruta: str | Path) -> list[jugador]:
 
             for f in dato:
 
-                try:
-                    juegador_actual = jugador(
-                        nombre=str(f["nombre"]),
-                        apellido=str(f["apellido"]),
-                        liga=str(f["liga"]),
-                        gole=int(f["gole"]),
-                        posicion=str(f["posicion"])
-                    )
+                try:    
+                    jugador_actual=juegador()
+                        
 
                     jugador_lista.append(juegador_actual)
 
