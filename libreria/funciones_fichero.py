@@ -2,15 +2,12 @@ from libreria.jugador import jugador
 from pathlib import Path
 import csv
 
-directorio_Datos = Path(__file__).parent / "datos"
-
 
 def cargar_archivo_csv(ruta: str | Path) -> list[jugador]:
     jugador_lista = []
-    archivo_csv = Path(ruta.strip)
 
     if isinstance(ruta, str):
-        archivo_csv = Path(ruta.strip)
+        archivo_csv = Path(ruta.strip())
 
     else:
         archivo_csv = Path(ruta)
@@ -29,16 +26,14 @@ def cargar_archivo_csv(ruta: str | Path) -> list[jugador]:
             dato = csv.DictReader(fichero)
 
             for f in dato:
-                
+
                 try:
                     juegador_actual = jugador(
-                        id_jugador=int(f["id_jugador"]),
                         nombre=str(f["nombre"]),
                         apellido=str(f["apellido"]),
                         liga=str(f["liga"]),
                         gole=int(f["gole"]),
                         posicion=str(f["posicion"])
-                    
                     )
 
                     jugador_lista.append(juegador_actual)

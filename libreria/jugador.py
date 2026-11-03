@@ -1,43 +1,16 @@
 class jugador:
 
     # Constructor de la c
-    def __init__(self, id_jugador, nombre, apellido, liga, gole, posicion):
-        self.__id_jugador = id_jugador
-        self.__nombre = nombre
-        self.__apellido = apellido
-        self.__liga = liga
+    def __init__(self, jugador_partido, temporada, gole, posicion):
+        self.__jugador_partido = jugador_partido
+        self.__temporada = temporada
         self.__gole = gole
         self.__posicion = posicion
 
     #   # METODOS GETTERS Y SETTERS
 
-    def get_id(self):
-        return self.__id_jugador
-
-    def set_id(self, id_jugador):
-        if isinstance(id_jugador, int):
-            self.__id_jugador = id_jugador
-
-    def get_nombre(self):
-        return self.__nombre
-
-    def set_titulo(self, nombre):
-        if isinstance(nombre, str):
-            self.__nombre = nombre
-
-    def get_apellido(self):
-        return self.__apellido
-
-    def set_apellido(self, apellido):
-        if isinstance(apellido, str):
-            self.__apellido = apellido
-
-    def get_liga(self):
-        return self.__liga
-
-    def set_liga(self, liga):
-        if isinstance(liga, float, int):
-            self.__liga = liga
+    def get_jugador_partida(self):
+        return self.__jugador_partido
 
     def get_gole(self):
         return self.__gole
@@ -53,21 +26,21 @@ class jugador:
         if isinstance(posicion, float):
             self.__posicion = posicion
 
-    def get_categoria_precio(self):
-        if self.__precio <= 20:
-            return "Economico"
-        elif self.__precio <= 40:
-            return "Medio"
-        return "Caro"
+        ## def get_categoria_precio(self):
+        ##   if self.__precio <= 20:
+        ##     return "Economico"
+        ##elif self.__precio <= 40:
+        ##  return "Medio"
+        ##return "Caro"
 
-    def get_nivel_dedicacion(self):
-        if self.__horas_jugadas <= 50:
-            return "Casual"
-        elif self.__horas_jugadas <= 150:
-            return "Habitual"
-        return "Experto"
+        ## def get_nivel_dedicacion(self):
+        ## if self.__horas_jugadas <= 50:
+        ## return "Casual"
+        ##elif self.__horas_jugadas <= 150:
+        ##return "Habitual"
+        ##   return "Experto"
 
     def __str__(
         self,
     ):  # Con este metodo imprimiremos la información del objeto videojuego sin necesitar de otro metodo
-        return f"Jugador:ID{self.__idjugador}|Nombre:{self.__nombre}|Apellido:{self.__apellido}|Liga{self.__liga}|Goles{self.__gole}|Posicion{self.__posicion}"
+        return f"Jugador: Nombre:{self.__nombre}|Apellido:{self.__apellido}|Liga{self.__liga}|Goles{self.__gole}|Posicion{self.__posicion}"
