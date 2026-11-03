@@ -1,7 +1,11 @@
 import sys  # Libreria sys importada p
 import csv
 
-from libreria.funciones_fichero import cargar_archivo_csv, mostrar_estadisticas
+from libreria.funciones_fichero import (
+    cargar_archivo_csv,
+    crear_estadisticas,
+    mostrar_estadisticas,
+)
 from pathlib import Path  # Importamos de la librerias pathlib el objeto Path
 from getpass import getuser
 
@@ -27,8 +31,12 @@ def avg(
 
 # Función principal para gestionar fichero .csv
 def menu_game_analystic():
-    juegos = cargar_archivo_csv(directorio_datos)
-
+    try:
+        registros = cargar_archivo_csv(directorio_datos)
+    except (fileNotFoundError, ValueError) as error:
+        print("ERRO!  el archivo no existe o no tiene la extension correcta" + error)
+        messi = crear_estadisticas(registros, "Lionel Messi")
+        cristiano = crear_estadisticas(registros, "Cristiano Ronaldo")
     while True:
         print(
             "<=={0:^25}==>".format("GAME ANALYSTIC")
@@ -36,8 +44,8 @@ def menu_game_analystic():
         print(
             "<=={0:^25}==>".format(f"BIENVENIDO : {usuario_ordenador}")
         )  # Personalizamos  el menu saludando al usuario
-        print("<=={0:^25}==>".format("1. MOSTRAR ESTADÍSTICAS CRISTIANO"))
-        print("<=={0:^25}==>".format("2.MOSTRAR ESTADISTICAS MESSI"))
+        print("<=={0:^25}==>".format("1. MOSTRAR ESTADÍSTICAS MESSI"))
+        print("<=={0:^25}==>".format("2.MOSTRAR ESTADISTICAS CRISTIANO"))
         print("<=={0:^25}==>".format("3.SALIR"))
         try:
             try:
@@ -47,10 +55,10 @@ def menu_game_analystic():
                 continue
             match opcion_menu:
                 case 1:
-                    mostrar_estadisticas(juegos)
+                    mostrar_estadisticas(messi)
 
                 case 2:
-                    mostrar_estadisticas(juegos)
+                    mostrar_estadisticas(cristiano)
                 case 3:
                     print("Has salido del programa...")
                     sys.exit(0)

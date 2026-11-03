@@ -56,17 +56,14 @@ def cargar_archivo_csv(ruta: str | Path) -> list[jugador]:
     return jugador_lista
 
 
-def mostrar_estadisticas(juegos: list[jugador]) -> None:
-    if not juegos:
-        print("ERROR! Debes cargar un archivo!")
-        return
-
-    precios = [p.get_precio() for p in juegos]  # Extraemos el precio de cada juego
-    horas = [h.get_horasJugadas() for h in juegos]
-    print("<========Estadísticas==============>")
-    print(f"Total Videojuegos: {len(juegos)}")
-    print(f"precio medio : {avg(precios):.2f} €")
-    print(f"Media de horas de juego : {avg(horas):.2f} h")
+def mostrar_estadisticas(stats: estadisticas) -> None:
+    print("\n===== ESTADÍSTICAS =====\n")
+    print(f"Jugador: {stats.get_nombre_jugador()}\n")
+    print("Partidos por competición:")
+    for competicion, partidos in stats.get_partidos_por_competicion().items():
+        print(f" - {competicion}: {partidos}")
+    print(f"\nNúmero de temporadas: {stats.get_numero_temporadas()}")
+    print(f"\nPartidos ganados por su equipo: {stats.get_partidos_ganados()}\n")
 
 
 # ====================================#
@@ -96,7 +93,6 @@ def obtener_partido_jugador(listado: list[jugador], nombre: str) -> list[jugador
                 partido[valor] = listado
 
     return list(partido.values())
-
 
 
 def contar_partido_competicion(partido: list[jugador]) -> dict:
@@ -136,7 +132,8 @@ def contador_victoria(
             victorias += 1
     return victorias
 
-def contar_partido_ganado(partido:contar_partido_competicion)-> int:
+
+def contar_partido_ganado(partido: contar_partido_competicion) -> int:
     contador = 0
     for partido in partido:
         if partido_victoria(partido):
@@ -170,6 +167,7 @@ def contar_partido_rival(partido: list[jugador]) -> dict:
 # ==================================================================|
 # ##############3
 
+
 def crear_estadisticas(partido: list[jugador], nombre: str) -> estadisticas:
     partido = obtener_partido_jugador(partido, nombre)
 
@@ -178,3 +176,6 @@ def crear_estadisticas(partido: list[jugador], nombre: str) -> estadisticas:
         contar_partido_competicion(partido),
         contador_temporada(partido),
         contador_victoria(partido),
+        contador_partido_club(partido),
+        contar_partido_rival(partido),
+    )
