@@ -8,7 +8,6 @@ from getpass import getuser
 # Variables de ruta
 directorio_Datos = Path(__file__).resolve().parent / "datos" / "data.csv"
 
-
 # Obtenemos el usuario del equipo utilizando la libreria getPass especificando que unicamente nos importe el metodogetUser().
 usuario_ordenador = getuser()
 
@@ -28,7 +27,7 @@ def avg(
 
 # Función principal para gestionar fichero .csv
 def menu_game_analystic():
-    juegos = cargar_archivo_csv(directorio_Datos)
+    juegos = cargar_archivo_csv(directorio_forma_texto)
 
     while True:
         print(

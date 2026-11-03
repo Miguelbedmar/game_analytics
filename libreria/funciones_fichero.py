@@ -1,6 +1,7 @@
 from libreria.jugador import jugador
 from pathlib import Path
 import csv
+
 directorio_Datos = Path(__file__).parent / "datos"
 
 
@@ -35,7 +36,7 @@ def cargar_archivo_csv(ruta: str | Path) -> list[jugador]:
                         nombre=str(f["nombre"]),
                         apellido=str(f["apellido"]),
                         liga=str(f["liga"]),
-                        gole=int(f["gole"]).
+                        gole=int(f["gole"]),
                         posicion=str(f["posicion"])
                     
                     )
